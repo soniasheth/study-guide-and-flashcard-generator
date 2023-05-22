@@ -1,5 +1,7 @@
 package cs3500.pa01;
 
+import cs3500.pa01.Study.Question.Question;
+import cs3500.pa01.Study.QuestionBank.StudySessionQuestionBank;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -18,40 +20,47 @@ public class Driver {
    * @param args - no command line args required, however 3 needed: path, flag, and output path
    */
   public static void main(String[] args) throws IOException {
-    //Checks for correct amount of command line args
-    if (args.length != 3) {
-      throw new IllegalArgumentException("Too many or too little arguments");
+//    //Checks for correct amount of command line args
+//    if (args.length != 3) {
+//      throw new IllegalArgumentException("Too many or too little arguments");
+//    }
+//
+//    //grab command line inputs
+//    final String  path = args[0];
+//    final String flag = args[1];
+//    final String outputPath = args[2];
+//
+//    //check if the arguments are valid
+//    checkInputArgs(path, flag);
+//
+//    //Visit all files in the File System given from the path
+//    Path filePath = Paths.get(path);
+//    FileSystemVisitor fileVisitor = new FileSystemVisitor();
+//    Files.walkFileTree(filePath, fileVisitor);
+//
+//    // Process the contents in all the markdown files + sort
+//    // hold all the summarized content
+//    String summarize = "";
+//    ArrayList<MarkdownFile> mdFileList = fileVisitor.getMarkdownFileList();
+//    sort(mdFileList, flag);
+//
+//    //get all the contents for a new file into one String
+//    for (MarkdownFile x : mdFileList) {
+//      summarize = summarize + x.getImportantFileContents();
+//    }
+//    //have to get rid of the blank line at the top of the string
+//    summarize = summarize.substring(1);
+//
+//    //write to the file
+//    MdFileWriter writer = new MdFileWriter(outputPath, summarize);
+//    writer.writeFile();
+
+    StudySessionQuestionBank bank = new StudySessionQuestionBank("/Users/soniasheth/Library/CloudStorage/OneDrive-NortheasternUniversity/Sophmore Year/Summer 1/OOD/pa02-soniasheth/SampleQuestionFile.sr");
+    ArrayList<Question> q = bank.generateSessionQuestions(1);
+    for(int i = 0; i < q.size(); i++) {
+      System.out.print(q.get(i).toString());
     }
-
-    //grab command line inputs
-    final String  path = args[0];
-    final String flag = args[1];
-    final String outputPath = args[2];
-
-    //check if the arguments are valid
-    checkInputArgs(path, flag);
-
-    //Visit all files in the File System given from the path
-    Path filePath = Paths.get(path);
-    FileSystemVisitor fileVisitor = new FileSystemVisitor();
-    Files.walkFileTree(filePath, fileVisitor);
-
-    // Process the contents in all the markdown files + sort
-    // hold all the summarized content
-    String summarize = "";
-    ArrayList<MarkdownFile> mdFileList = fileVisitor.getMarkdownFileList();
-    sort(mdFileList, flag);
-
-    //get all the contents for a new file into one String
-    for (MarkdownFile x : mdFileList) {
-      summarize = summarize + x.getImportantFileContents();
-    }
-    //have to get rid of the blank line at the top of the string
-    summarize = summarize.substring(1);
-
-    //write to the file
-    MdFileWriter writer = new MdFileWriter(outputPath, summarize);
-    writer.writeFile();
+    //System.out.print(bank.toString());
   }
 
   /**
