@@ -10,11 +10,11 @@ import java.util.ArrayList;
 // where to put the sessionQuestions OBJECT
 // stuff to go into the constructor - can i put the study tracker stuff in the constructor?
 // abstracting the methods in Session Questions
-public class ControllerStudy {
+public class StudyController {
   StudyViewer view;
   //StudySession studyTracker;
 
-  public ControllerStudy() {
+  public StudyController() {
     view = new StudyViewer();
   }
 
@@ -32,10 +32,10 @@ public class ControllerStudy {
       UserOptions response = UserOptions.fromVal(view.showUserOptions());
       switch(response) {
         case EASY:
-          studyTracker.markQuestion(x, "1");
+          studyTracker.markedEasy(x);
           break;
         case HARD:
-          studyTracker.markQuestion(x, "2");
+          studyTracker.markedHard(x);
           break;
         case SHOW_ANSWER:
           view.showElement(x.getAnswer());

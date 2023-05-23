@@ -99,6 +99,10 @@ public class StudySessionQuestionBank extends QuestionBank {
     return sessionQuestions; //want to make sure the size of this arraylist question num - exception
   }
 
+  public ArrayList<Question> shuffle(Random) {
+
+  }
+
   public int getNumEasyQuestions() {
     return numEasyQuestions;
   }

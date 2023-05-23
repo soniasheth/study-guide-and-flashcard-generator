@@ -29,7 +29,6 @@ public class MdFileWriter {
    *
    * @throws IOException if unable to write to the given file path
    */
-
   public void writeFile() throws IOException {
     //creates file if it doesn't exist already
     File summarize = new File(path);

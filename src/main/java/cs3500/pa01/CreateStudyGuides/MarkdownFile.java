@@ -1,7 +1,7 @@
-package cs3500.pa01;
+package cs3500.pa01.CreateStudyGuides;
 
+import cs3500.pa01.LineProcessor;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.attribute.FileTime;
 import java.util.Scanner;
@@ -16,6 +16,7 @@ public class MarkdownFile {
   private String name;
   private FileTime creationDate;
   private FileTime lastModifiedDate;
+  private ContentReader reader;
 
   /**
    * Constructor: Instantiates a Markdown File
@@ -25,11 +26,14 @@ public class MarkdownFile {
    * @param creationDate the file creation time
    * @param lastModifiedDate the file lastModified time
    */
-  MarkdownFile(Path path, String name, FileTime creationDate, FileTime lastModifiedDate) {
+  public MarkdownFile(Path path, String name, FileTime creationDate, FileTime lastModifiedDate) {
     this.path = path;
     this.name = name;
     this.creationDate = creationDate;
     this.lastModifiedDate = lastModifiedDate;
+    this.reader = new ContentReader(path);
+    // immediately processes the contents in the file
+    reader.filterContent();
   }
 
   /**
@@ -69,25 +73,11 @@ public class MarkdownFile {
    * @return a string with the new important contents
    */
   public String getImportantFileContents() {
-    //String contents = "";
-    StringBuilder contents = new StringBuilder();
-    Scanner fileScanner = null;
-    try {
-      fileScanner = new Scanner(path);
-    } catch (IOException e) {
-      throw new IllegalArgumentException("Path is invalid.");
-    }
-    LineProcessor processor = new LineProcessor();
-    while (fileScanner.hasNextLine()) {
-      String line = fileScanner.nextLine();
-      String newContent = processor.processFileLine(line);
-      if (newContent != "") {
-        contents.append(newContent);
-      }
+    return reader.getStudyContent();
+  }
 
-    }
-    fileScanner.close();
-    return contents.toString();
+  public String getFileQuestions() {
+    return reader.getQuestionContent();
   }
 
   /**

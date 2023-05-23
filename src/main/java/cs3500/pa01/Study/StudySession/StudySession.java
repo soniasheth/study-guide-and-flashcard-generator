@@ -33,14 +33,19 @@ public class StudySession {
     return sessionQuestions;
   }
 
-  public void markQuestion(Question current, String choice) {
-    //if the current question is currently easy and the user wants to mark it as hard
-    if(current.getDifficulty().equals(Difficulty.EASY) && choice.equals("1")) {
+  public void markedEasy(Question current) {
+    if(current.getDifficulty().equals(Difficulty.HARD)) {
       hardToEasy++;
       current.setDifficulty(Difficulty.EASY);
       questionBank.increaseNumEasyQue();
     }
-    else if(current.getDifficulty().equals(Difficulty.HARD) && choice.equals("2")) {
+    increaseQuestionsAnswered();
+  }
+
+  public void markedHard(Question current) {
+    System.out.println("Marked Hard");
+    if(current.getDifficulty().equals(Difficulty.EASY)) {
+      System.out.println("EnterHard");
       easyToHard++;
       current.setDifficulty(Difficulty.HARD);
       questionBank.increaseNumHardQue();
@@ -56,9 +61,9 @@ public class StudySession {
    */
   public String toString() {
     StringBuilder builder = new StringBuilder();
-    builder.append("You answered " + numQuestionsAnswered + " questions\n" );
-    builder.append(easyToHard + " questions" + " went from easy to hard\n");
-    builder.append(hardToEasy + " questions" + " went from hard to easy\n");
+    builder.append("Total questions answered: " + numQuestionsAnswered + "\n" );
+    builder.append("Questions from easy to hard: " + easyToHard + "\n");
+    builder.append("Questions from easy to hard: "+ hardToEasy + "\n");
     builder.append("Current Counts in Question Bank: \n");
     builder.append(questionBank.getNumHardQuestions() + " hard questions\n");
     builder.append(questionBank.getNumEasyQuestions() + " easy questions");

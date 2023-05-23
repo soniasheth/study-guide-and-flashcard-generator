@@ -1,4 +1,4 @@
-package cs3500.pa01;
+package cs3500.pa01.CreateStudyGuides;
 
 /**
  * Represents the accepted order in which Markdown Files can be ordered

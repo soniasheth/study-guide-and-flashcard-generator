@@ -1,0 +1,6 @@
+1. [[What is the capital of Canada?:::The capital is Ottawa.]]
+2. [[Which country is known as the Land of the Rising Sun?:::Japan.]]
+3. [[What is the largest river in Africa?:::The largest river is the Nile River.]]
+4. [[What is the tallest mountain in North America?:::The tallest mountain is Denali (also known as Mount McKinley).]]
+5. [[Which continent is the driest inhabited continent on Earth?:::Australia.]]
+6. [[What is the longest river in South America?:::The longest river is the Amazon River.]]

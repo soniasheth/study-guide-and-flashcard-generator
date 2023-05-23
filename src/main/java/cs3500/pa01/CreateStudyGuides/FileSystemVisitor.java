@@ -1,7 +1,8 @@
-package cs3500.pa01;
+package cs3500.pa01.CreateStudyGuides;
 
 import static java.nio.file.FileVisitResult.CONTINUE;
 
+import cs3500.pa01.CreateStudyGuides.MarkdownFile;
 import java.io.IOException;
 import java.nio.file.FileVisitResult;
 import java.nio.file.FileVisitor;
@@ -20,7 +21,7 @@ public class FileSystemVisitor implements FileVisitor<Path> {
   /**
    Constructor that instantiates the fields
    */
-  FileSystemVisitor() {
+  public FileSystemVisitor() {
     this.mdFiles = new ArrayList<>();
     this.visited = false;
   }

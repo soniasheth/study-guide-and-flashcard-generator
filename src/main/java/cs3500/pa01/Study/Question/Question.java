@@ -12,11 +12,11 @@ public class Question {
   private Difficulty difficulty;
 
   /**
-   * Constructor: Instantiates a question
+   * Constructor: Instantiates a Question
    *
    * @param question question
    * @param answer answer
-   * @param difficulty how hard the question is
+   * @param difficulty how hard the question is (Difficulty Enum)
    *
    */
   public Question(String question, String answer, Difficulty difficulty) {
@@ -26,7 +26,7 @@ public class Question {
   }
 
   /**
-   * Gets this object's question
+   * Gets this Question's question
    *
    * @return String, the question
    */
@@ -35,7 +35,7 @@ public class Question {
   }
 
   /**
-   * Gets this object's answer
+   * Gets this Questions's answer
    *
    * @return String, the answer
    */
@@ -44,16 +44,20 @@ public class Question {
   }
 
   /**
-   * Gets this object's difficulty
+   * Gets this object's Difficulty (enum)
    *
-   * @return String, the difficulty
+   * @return Difficulty Enum, the difficulty
    */
   public Difficulty getDifficulty() {
 
     return this.difficulty;
   }
 
-  //make sure it is one of the enumerations probably
+  /**
+   * Sets the difficulty to the given enum Difficulty parameter
+   *
+   * @param diff Difficulty enum type
+   */
   public void setDifficulty(Difficulty diff) {
 
     this.difficulty = diff;

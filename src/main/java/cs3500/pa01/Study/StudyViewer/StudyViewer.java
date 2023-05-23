@@ -24,11 +24,7 @@ public class StudyViewer {
   public String showUserOptions() {
     String options =
         """
-        1. Mark as Easy
-        2. Mark as Hard
-        3. Request Answer
-        4. Exit
-        
+        1. Mark as Easy | 2. Mark as Hard | 3. Request Answer | 4. Exit
         Choose your response:""";
     return getUserResponse(options);
   }
