@@ -19,7 +19,7 @@ public class MdFileWriter {
    * @param contents - String with the contents to be written
    *
    */
-  MdFileWriter(String path, String contents) {
+  public MdFileWriter(String path, String contents) {
     this.path = path;
     this.contents = contents;
   }
@@ -38,7 +38,6 @@ public class MdFileWriter {
       FileWriter writer = new FileWriter(summarize);
       writer.write(contents);
       writer.close();
-      System.out.println("Successfully wrote to the given output file.");
     } catch (IOException e) {
       throw new IOException("Unable to write to file.");
       //e.printStackTrace();

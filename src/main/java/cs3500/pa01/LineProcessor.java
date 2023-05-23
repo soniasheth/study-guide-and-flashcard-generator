@@ -42,4 +42,10 @@ public class LineProcessor {
       return newContent.toString();
     }
   }
+  public String removeWord(String phrase, String remove) {
+    int index = phrase.indexOf(remove);
+    int length = remove.length();
+    return phrase.substring(index + length + 1);
+
+  }
 }

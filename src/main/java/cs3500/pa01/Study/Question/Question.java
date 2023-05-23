@@ -1,5 +1,7 @@
 package cs3500.pa01.Study.Question;
 
+import cs3500.pa01.Study.Difficulty;
+
 /**
  * Represents a Question from the Study Guide
  */
@@ -7,7 +9,7 @@ public class Question {
   //fields
   private String question;
   private String answer;
-  private String difficulty;
+  private Difficulty difficulty;
 
   /**
    * Constructor: Instantiates a question
@@ -17,7 +19,7 @@ public class Question {
    * @param difficulty how hard the question is
    *
    */
-  public Question(String question, String answer, String difficulty) {
+  public Question(String question, String answer, Difficulty difficulty) {
     this.question = question;
     this.answer = answer;
     this.difficulty = difficulty;
@@ -46,12 +48,14 @@ public class Question {
    *
    * @return String, the difficulty
    */
-  public String getDifficulty() {
+  public Difficulty getDifficulty() {
+
     return this.difficulty;
   }
 
   //make sure it is one of the enumerations probably
-  public void setDifficulty(String diff) {
+  public void setDifficulty(Difficulty diff) {
+
     this.difficulty = diff;
   }
 
@@ -64,7 +68,7 @@ public class Question {
     StringBuilder build = new StringBuilder();
     build.append(question + "\n");
     build.append(answer + "\n");
-    build.append("Difficulty: " + difficulty + "\n" + "\n");
+    build.append("Difficulty: "+ difficulty.toString() + "\n");
     return build.toString();
   }
 }

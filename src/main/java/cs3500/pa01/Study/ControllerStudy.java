@@ -1,40 +1,66 @@
 package cs3500.pa01.Study;
 
-import cs3500.pa01.Study.Printer.Printer;
-import cs3500.pa01.Study.QuestionBank.StudySessionQuestionBank;
+import cs3500.pa01.MdFileWriter;
+import cs3500.pa01.Study.StudyViewer.StudyViewer;
+import cs3500.pa01.Study.Question.Question;
 import cs3500.pa01.Study.StudySession.StudySession;
-import java.util.Scanner;
+import java.io.IOException;
+import java.util.ArrayList;
 
+// where to put the sessionQuestions OBJECT
+// stuff to go into the constructor - can i put the study tracker stuff in the constructor?
+// abstracting the methods in Session Questions
 public class ControllerStudy {
-  Printer p1;
-  Scanner userInput;
-  ControllerStudy() {
-    p1 = new Printer();
-    userInput = new Scanner(System.in);
+  StudyViewer view;
+  //StudySession studyTracker;
+
+  public ControllerStudy() {
+    view = new StudyViewer();
   }
-  public void run() {
-    p1.printIntroduction();
-    p1.printMessage("Enter Path link: ");
-    String path = userInput.nextLine();
 
-    p1.printMessage("How many questions would you like to answer today: ");
-    int numQuestions = userInput.nextInt();
+  public void runSession() throws IOException {
+    view.showWelcome();
+    String path = view.getUserResponse("Enter the .sr file link: ");
+    String numQ = view.getUserResponse("How many questions do you want answer today: ");
 
-    StudySession studyTracker = new StudySession(numQuestions, path);
+    StudySession studyTracker = new StudySession(Integer.parseInt(numQ), path);
+    ArrayList<Question> sessionQuestions = studyTracker.getSessionQuestions();
 
-    String userChoice = "";
-    while(userChoice != "4" && studyTracker.done() == false) {
-      p1.printMessage(studyTracker.getCurrentQuestion());
-      p1.printUserOptions();
-      userChoice = userInput.next();
-      studyTracker.processUserChoice(userChoice);
-      if(userInput.equals("3")) {
-        p1.printMessage("Answer: " + studyTracker.getCurrentAnswer());
+    boolean exitFlag = false;
+    for(Question x : sessionQuestions) {
+      view.showElement(x.getQuestion());
+      UserOptions response = UserOptions.fromVal(view.showUserOptions());
+      switch(response) {
+        case EASY:
+          studyTracker.markQuestion(x, "1");
+          break;
+        case HARD:
+          studyTracker.markQuestion(x, "2");
+          break;
+        case SHOW_ANSWER:
+          view.showElement(x.getAnswer());
+          studyTracker.increaseQuestionsAnswered();
+          break;
+        case EXIT:
+          exitFlag = true;
+          break;
+        default:
+          throw new IllegalArgumentException("Invalid Answer.");
+      }
+      if(exitFlag) {
+        break;
       }
     }
-    p1.printMessage(studyTracker.toString());
-    //studyTracker.updateSrFile();
-
+    //prints stats to console
+    view.showElement(studyTracker.toString());
+    //update the file
+    updateSrFile(studyTracker.allQuestions(), path);
+    //print the end message
+    view.printEndMessage();
   }
 
+  public void updateSrFile(String contents, String path) throws IOException {
+    MdFileWriter writer = new MdFileWriter(path, contents);
+    writer.writeFile();
+  }
 }

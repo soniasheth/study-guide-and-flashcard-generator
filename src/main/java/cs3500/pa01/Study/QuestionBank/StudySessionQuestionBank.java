@@ -1,6 +1,9 @@
 package cs3500.pa01.Study.QuestionBank;
 
+import cs3500.pa01.LineProcessor;
+import cs3500.pa01.Study.Difficulty;
 import cs3500.pa01.Study.Question.Question;
+import cs3500.pa01.Study.UserOptions;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -17,6 +20,7 @@ public class StudySessionQuestionBank extends QuestionBank {
   ArrayList<Question> hardQuestions;
   ArrayList<Question> easyQuestions;
 
+
   /**
    * Initializes Study Session Object
    *
@@ -31,8 +35,6 @@ public class StudySessionQuestionBank extends QuestionBank {
     initializeQuestions();
   }
 
-  //add try catches
-  // add more ways to process answer and difficulty
   @Override
   public void initializeQuestions() {
     Scanner fileScan = null;
@@ -43,19 +45,25 @@ public class StudySessionQuestionBank extends QuestionBank {
     }
     while(fileScan.hasNextLine()) {
       //gets the question metadata according to the format of the Question .sr file
-      // add a try catch
+      LineProcessor lp = new LineProcessor();
       String question = fileScan.nextLine();
       String answer = fileScan.nextLine();
-      String difficulty = fileScan.nextLine();
-      Question q = new Question(question, answer, difficulty);
-      if(difficulty.contains("Hard")) {
+      //get the difficulty of the question and convert to enum value
+      String difficulty = lp.removeWord(fileScan.nextLine(), "Difficulty:");
+      Difficulty enumdifficulty = Difficulty.fromString(difficulty);
+      //create question
+      Question q = new Question(question, answer, enumdifficulty);
+      //add question to correct bank / arraylist
+      if(enumdifficulty.equals(Difficulty.HARD)) {
         hardQuestions.add(q);
+        numHardQuestions++;
       }
-      else if(difficulty.contains("Easy")) {
+      else if(enumdifficulty.equals(Difficulty.EASY)) {
         easyQuestions.add(q);
+        numEasyQuestions++;
       }
       allQuestions.add(q);
-      // move past the space between each question in the document
+      // move past the space between each question in the document (format of the document)
       if(fileScan.hasNextLine()) {
         fileScan.nextLine();
       }

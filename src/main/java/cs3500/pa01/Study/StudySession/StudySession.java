@@ -1,5 +1,6 @@
 package cs3500.pa01.Study.StudySession;
 
+import cs3500.pa01.Study.Difficulty;
 import cs3500.pa01.Study.Question.Question;
 import cs3500.pa01.Study.QuestionBank.StudySessionQuestionBank;
 import java.util.ArrayList;
@@ -10,7 +11,6 @@ import java.util.ArrayList;
  */
 
 public class StudySession {
-  private int currQuestionIndex;
   private int numQuestionsAnswered;
   private int easyToHard;
   private int hardToEasy;
@@ -20,71 +20,34 @@ public class StudySession {
   public StudySession(int numQuestions, String link) {
     questionBank = new StudySessionQuestionBank(link);
     this.sessionQuestions = questionBank.generateSessionQuestions(numQuestions);
-    this.currQuestionIndex = 0;
     this.numQuestionsAnswered = 0;
     this.easyToHard = 0;
     this.hardToEasy = 0;
   }
 
-  private void increaseQuestionIndex() {
-    if(currQuestionIndex < sessionQuestions.size()) {
-      currQuestionIndex++;
+  public void increaseQuestionsAnswered() {
+    numQuestionsAnswered++;
+  }
+
+  public ArrayList<Question> getSessionQuestions() {
+    return sessionQuestions;
+  }
+
+  public void markQuestion(Question current, String choice) {
+    //if the current question is currently easy and the user wants to mark it as hard
+    if(current.getDifficulty().equals(Difficulty.EASY) && choice.equals("1")) {
+      hardToEasy++;
+      current.setDifficulty(Difficulty.EASY);
+      questionBank.increaseNumEasyQue();
     }
-    else {
-      throw new RuntimeException("No more questions in this session's question bank.");
+    else if(current.getDifficulty().equals(Difficulty.HARD) && choice.equals("2")) {
+      easyToHard++;
+      current.setDifficulty(Difficulty.HARD);
+      questionBank.increaseNumHardQue();
     }
+    increaseQuestionsAnswered();
   }
 
-  public void processUserChoice(String input) {
-    Question current = sessionQuestions.get(currQuestionIndex);
-    switch(input) {
-      //Marked as easy
-      case "1":
-        if(current.getDifficulty().equals("Hard")) {
-          hardToEasy++;
-          current.setDifficulty("Easy");
-          questionBank.increaseNumEasyQue();
-        }
-        numQuestionsAnswered++;
-        increaseQuestionIndex();
-        break;
-      //marked as hard
-      case "2":
-        if(current.getDifficulty().equals("Easy")) {
-          easyToHard++;
-          current.setDifficulty("Hard");
-          questionBank.increaseNumHardQue();
-        }
-        numQuestionsAnswered++;
-        increaseQuestionIndex();
-        break;
-      //requests answer
-      case "3":
-        numQuestionsAnswered++;
-        increaseQuestionIndex();
-        break;
-      case "4":
-        break;
-      default:
-        throw new IllegalArgumentException("Invalid Answer");
-    }
-  }
-
-  public boolean done() {
-    if(currQuestionIndex >= sessionQuestions.size()) {
-      return true;
-    }
-    return false;
-  }
-
-
-  public String getCurrentQuestion() {
-    return sessionQuestions.get(currQuestionIndex).getQuestion();
-  }
-
-  public String getCurrentAnswer() {
-    return sessionQuestions.get(currQuestionIndex).getAnswer();
-  }
 
   /**
    * Creates a String with all the session information
@@ -94,12 +57,21 @@ public class StudySession {
   public String toString() {
     StringBuilder builder = new StringBuilder();
     builder.append("You answered " + numQuestionsAnswered + " questions\n" );
-    builder.append(easyToHard + " questions" + "went from easy to hard\n");
-    builder.append(hardToEasy + " questions" + "went from hard to easy\n");
+    builder.append(easyToHard + " questions" + " went from easy to hard\n");
+    builder.append(hardToEasy + " questions" + " went from hard to easy\n");
     builder.append("Current Counts in Question Bank: \n");
     builder.append(questionBank.getNumHardQuestions() + " hard questions\n");
     builder.append(questionBank.getNumEasyQuestions() + " easy questions");
     return builder.toString();
+  }
+
+  /**
+   * Creates a String with all the questions in the whole question bank
+   *
+   * @return a String with all the questions in the whole question bank
+   */
+  public String allQuestions() {
+    return questionBank.toString();
   }
 
 }

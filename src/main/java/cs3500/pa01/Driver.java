@@ -1,5 +1,6 @@
 package cs3500.pa01;
 
+import cs3500.pa01.Study.ControllerStudy;
 import cs3500.pa01.Study.Question.Question;
 import cs3500.pa01.Study.QuestionBank.StudySessionQuestionBank;
 import java.io.IOException;
@@ -55,12 +56,16 @@ public class Driver {
 //    MdFileWriter writer = new MdFileWriter(outputPath, summarize);
 //    writer.writeFile();
 
-    StudySessionQuestionBank bank = new StudySessionQuestionBank("/Users/soniasheth/Library/CloudStorage/OneDrive-NortheasternUniversity/Sophmore Year/Summer 1/OOD/pa02-soniasheth/SampleQuestionFile.sr");
-    ArrayList<Question> q = bank.generateSessionQuestions(1);
-    for(int i = 0; i < q.size(); i++) {
-      System.out.print(q.get(i).toString());
-    }
-    //System.out.print(bank.toString());
+//    StudySessionQuestionBank bank = new StudySessionQuestionBank("/Users/soniasheth/Library/CloudStorage/OneDrive-NortheasternUniversity/Sophmore Year/Summer 1/OOD/pa02-soniasheth/SampleQuestionFile.sr");
+//    ArrayList<Question> q = bank.generateSessionQuestions(2);
+//    for(int i = 0; i < q.size(); i++) {
+//      System.out.print(q.get(i).toString());
+//    }
+//    //System.out.print(bank.toString());
+
+    ControllerStudy c = new ControllerStudy();
+    c.runSession();
+
   }
 
   /**
