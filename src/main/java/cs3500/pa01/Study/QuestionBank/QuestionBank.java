@@ -1,6 +1,7 @@
 package cs3500.pa01.Study.QuestionBank;
 
 import cs3500.pa01.Study.Question.Question;
+import cs3500.pa01.Utils;
 import java.util.ArrayList;
 
 /**
@@ -10,6 +11,7 @@ public abstract class QuestionBank {
   //fields
   protected String link;
   protected ArrayList<Question> allQuestions;
+  protected Utils util;
 
   /**
    * Instantiates AbstractQuestionBank
@@ -18,9 +20,9 @@ public abstract class QuestionBank {
    *
    */
   QuestionBank(String link) {
-
     this.link = link;
     this.allQuestions = new ArrayList<>();
+    this.util = new Utils();
   }
 
 
@@ -38,7 +40,11 @@ public abstract class QuestionBank {
    * @return an ArrayList full of the chosen questions just for one session
    *
    */
-  public abstract ArrayList<Question> generateSessionQuestions(int questionNum);
+  public abstract ArrayList<Question> generateSessionQuestions(int questionNum, int seed);
+
+  public ArrayList<Question> getAllQuestions() {
+    return this.allQuestions;
+  }
 
   /**
    * Creates a string representation of all the questions in the file

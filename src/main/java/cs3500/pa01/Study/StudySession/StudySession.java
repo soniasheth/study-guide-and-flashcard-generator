@@ -4,6 +4,7 @@ import cs3500.pa01.Study.Difficulty;
 import cs3500.pa01.Study.Question.Question;
 import cs3500.pa01.Study.QuestionBank.StudySessionQuestionBank;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Handles, tracks an individual study session + data
@@ -19,40 +20,25 @@ public class StudySession {
 
   public StudySession(int numQuestions, String link) {
     questionBank = new StudySessionQuestionBank(link);
-    this.sessionQuestions = questionBank.generateSessionQuestions(numQuestions);
+    this.sessionQuestions = questionBank.generateSessionQuestions(numQuestions, new Random().nextInt());
     this.numQuestionsAnswered = 0;
     this.easyToHard = 0;
     this.hardToEasy = 0;
   }
 
-  public void increaseQuestionsAnswered() {
-    numQuestionsAnswered++;
-  }
-
-  public ArrayList<Question> getSessionQuestions() {
-    return sessionQuestions;
-  }
-
-  public void markedEasy(Question current) {
-    if(current.getDifficulty().equals(Difficulty.HARD)) {
+  public void markedQuestion(Question current, String userChoice) {
+    if(current.getDifficulty().equals(Difficulty.HARD) && userChoice.equals("easy")) {
       hardToEasy++;
       current.setDifficulty(Difficulty.EASY);
       questionBank.increaseNumEasyQue();
     }
-    increaseQuestionsAnswered();
-  }
-
-  public void markedHard(Question current) {
-    System.out.println("Marked Hard");
-    if(current.getDifficulty().equals(Difficulty.EASY)) {
-      System.out.println("EnterHard");
+    else if(current.getDifficulty().equals(Difficulty.EASY) && userChoice.equals("hard")) {
       easyToHard++;
       current.setDifficulty(Difficulty.HARD);
       questionBank.increaseNumHardQue();
     }
     increaseQuestionsAnswered();
   }
-
 
   /**
    * Creates a String with all the session information
@@ -63,8 +49,8 @@ public class StudySession {
     StringBuilder builder = new StringBuilder();
     builder.append("Total questions answered: " + numQuestionsAnswered + "\n" );
     builder.append("Questions from easy to hard: " + easyToHard + "\n");
-    builder.append("Questions from easy to hard: "+ hardToEasy + "\n");
-    builder.append("Current Counts in Question Bank: \n");
+    builder.append("Questions from hard to easy: "+ hardToEasy + "\n");
+    builder.append("Current Counts in Question Bank:\n");
     builder.append(questionBank.getNumHardQuestions() + " hard questions\n");
     builder.append(questionBank.getNumEasyQuestions() + " easy questions");
     return builder.toString();
@@ -77,6 +63,25 @@ public class StudySession {
    */
   public String allQuestions() {
     return questionBank.toString();
+  }
+
+  public void increaseQuestionsAnswered() {
+    numQuestionsAnswered++;
+  }
+
+  public ArrayList<Question> getSessionQuestions() {
+    return sessionQuestions;
+  }
+
+
+  public int getEasyToHard() {
+    return easyToHard;
+  }
+  public int getHardToEasy() {
+    return hardToEasy;
+  }
+  public int getNumQuestionsAnswered() {
+    return numQuestionsAnswered;
   }
 
 }

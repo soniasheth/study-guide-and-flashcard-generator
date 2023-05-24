@@ -1,5 +1,6 @@
 package cs3500.pa01.Study.Question;
 
+import cs3500.pa01.CreateStudyGuides.MarkdownFile;
 import cs3500.pa01.Study.Difficulty;
 
 /**
@@ -74,5 +75,23 @@ public class Question {
     build.append(answer + "\n");
     build.append("Difficulty: "+ difficulty.toString() + "\n");
     return build.toString();
+  }
+
+  /**
+   * Overrides the equals method: Compares this Markdown file to another object
+   * for equality
+   *
+   * @param other - an object to compare this Markdown file to
+   * @return boolean whether this Markdown File is equal to the given one
+   */
+
+  public boolean equals(Object other) {
+    if (!(other instanceof Question)) {
+      throw new IllegalArgumentException("Not a Question");
+    }
+    Question that = (Question) other;
+    return this.question.equals(that.question)
+        && this.answer.equals(that.answer)
+        && this.difficulty.equals(that.difficulty);
   }
 }

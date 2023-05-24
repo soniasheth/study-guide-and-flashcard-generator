@@ -32,10 +32,10 @@ public class StudyController {
       UserOptions response = UserOptions.fromVal(view.showUserOptions());
       switch(response) {
         case EASY:
-          studyTracker.markedEasy(x);
+          studyTracker.markedQuestion(x, "easy");
           break;
         case HARD:
-          studyTracker.markedHard(x);
+          studyTracker.markedQuestion(x, "hard");
           break;
         case SHOW_ANSWER:
           view.showElement(x.getAnswer());
