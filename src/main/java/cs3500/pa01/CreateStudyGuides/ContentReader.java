@@ -22,8 +22,8 @@ public class ContentReader {
    * @param path - path to the file
    */
   ContentReader(Path path) {
-    processor = new LineProcessor();
     this.path = path;
+    processor = new LineProcessor();
     content = new StringBuilder();
     questions = new StringBuilder();
   }
@@ -32,7 +32,7 @@ public class ContentReader {
    * Separates the important file contents into questions and then other content and
    *     and adds to the appropriate String Builder
    */
-  public void filterContent() {
+  public void filterContents() {
     //gets all content read in from the file
     String contents = scanAllImportantContentFromFile();
     Scanner contentScanner = new Scanner(contents);
@@ -42,7 +42,7 @@ public class ContentReader {
         //if a question
         questions.append(processor.processQuestion(line) + "\n");
       } else {
-        //if regu
+        //if regular content
         content.append(line + "\n");
       }
     }
@@ -78,7 +78,11 @@ public class ContentReader {
         contents.append(newContent);
       }
     }
+
     fileScanner.close();
     return contents.toString();
+
   }
+
+
 }

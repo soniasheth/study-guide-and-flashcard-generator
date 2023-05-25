@@ -33,7 +33,7 @@ class StudyGuidesControllerTest {
     FileSystemVisitor v1 = new FileSystemVisitor();
     Files.walkFileTree(Path.of(directory), v1);
     files = v1.getMarkdownFileList();
-    controller = new StudyGuidesController("1", "2", "3");
+    controller = new StudyGuidesController("", "filename", "3");
   }
 
 
@@ -171,62 +171,66 @@ class StudyGuidesControllerTest {
    * @throws IOException if there are incorrect amount of input args
    *
    */
-//  @Test
-//  public void testMain() throws IOException {
-//    String[] args = new String[] {"./src/test/resources/Examples",
-//        "filename", "./src/test/resources/Examples/Testing.md"};
-//    assertDoesNotThrow(() ->
-//        controller.main(args));
-//
-//    //check if file contents are the sam
-//    String contentActual = "";
-//    String contentExpect =
-//        """
-//        # Java Arrays
-//        - An **array** is a collection of variables of the same type
-//
-//        ## Declaring an Array
-//        - General Form: type[] arrayName;
-//        - only creates a reference
-//        - no array has  actually been created yet
-//
-//        ## Creating an Array (Instantiation)
-//        - General form:  arrayName = new type[numberOfElements];
-//        - numberOfElements must be a positive Integer.
-//        - Gotcha: Array size is not  modifiable once instantiated.
-//
-//        # Vectors
-//        - Vectors act like resizable arrays
-//
-//        ## Declaring a vector
-//        - General Form: Vector<type> v = new Vector();
-//        - type needs to be a valid reference type
-//
-//        ## Adding an element to a vector
-//        - v.add(object of type);
-//        """;
-//
-//    File tempFile = new File("./src/test/resources/Examples/Testing.md");
-//    Scanner fileScan = new Scanner(tempFile);
-//    while (fileScan.hasNextLine()) {
-//      contentActual = contentActual + fileScan.nextLine() + "\n";
-//    }
-//    assertEquals(contentExpect, contentActual);
-//
-//    tempFile.delete();
-//  }
-//
-//  /**
-//   * Tests main method in driver with an exception
-//   */
-//  @Test
-//  public void testMainFail() {
-//    String[] args = new String[] {"./src/test/resources/Examples",
-//        "./src/test/resources/Examples/Testing.md"};
-//    assertThrows(
-//        IllegalArgumentException.class,
-//        () -> driver.main(args));
-//  }
+  @Test
+  public void testRun() throws IOException {
+    String[] args = new String[] {"./src/test/resources/Examples",
+        "filename", "./src/test/resources/Examples/Testing.md"};
+    assertDoesNotThrow(() ->
+        controller.run());
+
+    //check if file contents are the same
+    String contentActual = "";
+    String contentExpect =
+        """
+        # Java Arrays
+        - An **array** is a collection of variables of the same type
+
+        ## Declaring an Array
+        - General Form: type[] arrayName;
+        - only creates a reference
+        - no array has  actually been created yet
+
+        ## Creating an Array (Instantiation)
+        - General form:  arrayName = new type[numberOfElements];
+        - numberOfElements must be a positive Integer.
+        - Gotcha: Array size is not  modifiable once instantiated.
+
+        # Vectors
+        - Vectors act like resizable arrays
+
+        ## Declaring a vector
+        - General Form: Vector<type> v = new Vector();
+        - type needs to be a valid reference type
+
+        ## Adding an element to a vector
+        - v.add(object of type);
+        """;
+
+    File tempFile = new File("./src/test/resources/Examples/Testing.md");
+    Scanner fileScan = new Scanner(tempFile);
+    while (fileScan.hasNextLine()) {
+      contentActual = contentActual + fileScan.nextLine() + "\n";
+    }
+    assertEquals(contentExpect, contentActual);
+
+    tempFile.delete();
+  }
+
+  /**
+   * Tests main method in driver with an exception
+   */
+  @Test
+  public void testMainFail() {
+    String[] args = new String[] {"./src/test/resources/Examples",
+        "./src/test/resources/Examples/Testing.md"};
+    assertThrows(
+        IllegalArgumentException.class,
+        () -> controller.run());
+  }
+
+
+
+
 
   /**
    * Makes a MarkdownFile for testing purposes
