@@ -1,7 +1,6 @@
 package cs3500.pa01.Study.QuestionBank;
 
 import cs3500.pa01.Study.Question.Question;
-import cs3500.pa01.Utils;
 import java.util.ArrayList;
 
 /**
@@ -11,7 +10,6 @@ public abstract class QuestionBank {
   //fields
   protected String link;
   protected ArrayList<Question> allQuestions;
-  protected Utils util;
 
   /**
    * Instantiates AbstractQuestionBank
@@ -22,7 +20,6 @@ public abstract class QuestionBank {
   QuestionBank(String link) {
     this.link = link;
     this.allQuestions = new ArrayList<>();
-    this.util = new Utils();
   }
 
 

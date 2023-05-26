@@ -33,7 +33,7 @@ public class MarkdownFile {
     this.lastModifiedDate = lastModifiedDate;
     this.reader = new ContentReader(path);
     // immediately processes the contents in the file
-    // reader.filterContents();
+    reader.filterContents();
   }
 
   /**
@@ -73,25 +73,7 @@ public class MarkdownFile {
    * @return a string with the new important contents
    */
   public String getImportantFileContents() {
-    StringBuilder contents = new StringBuilder();
-    Scanner fileScanner = null;
-    LineProcessor processor = new LineProcessor();
-    try {
-      fileScanner = new Scanner(path);
-    } catch (IOException e) {
-      throw new IllegalArgumentException("Path is invalid.");
-    }
-    while (fileScanner.hasNextLine()) {
-      String line = fileScanner.nextLine();
-      String newContent = processor.processFileLine(line);
-      if (newContent != "") {
-        contents.append(newContent);
-      }
-    }
-
-    fileScanner.close();
-    return contents.toString();
-    //return reader.getStudyContent();
+    return reader.getStudyContent();
   }
 
 

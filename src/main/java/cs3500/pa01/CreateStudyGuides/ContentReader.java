@@ -3,7 +3,6 @@ package cs3500.pa01.CreateStudyGuides;
 import cs3500.pa01.LineProcessor;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Scanner;
 
 /**

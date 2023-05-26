@@ -1,25 +1,30 @@
 package cs3500.pa01.Study;
 
+import cs3500.pa01.Controller;
 import cs3500.pa01.MdFileWriter;
 import cs3500.pa01.Study.StudyViewer.StudyViewer;
 import cs3500.pa01.Study.Question.Question;
 import cs3500.pa01.Study.StudySession.StudySession;
 import java.io.IOException;
+import java.io.Reader;
 import java.util.ArrayList;
 
 // where to put the sessionQuestions OBJECT
 // stuff to go into the constructor - can i put the study tracker stuff in the constructor?
 // abstracting the methods in Session Questions
-public class StudyController {
+public class StudyController implements Controller {
   StudyViewer view;
-  //StudySession studyTracker;
+  Reader readable;
+  Appendable appendable;
 
-  public StudyController() {
-    view = new StudyViewer();
+  public StudyController(Reader readable, Appendable appendable) {
+    this.readable = readable;
+    this.appendable = appendable;
+    view = new StudyViewer(appendable, readable);
   }
 
-  public void runSession() throws IOException {
-    view.showWelcome();
+  public void run() throws IOException {
+    view.showElement("Welcome to your Study Session! Let's get started!");
     String path = view.getUserResponse("Enter the .sr file link: ");
     String numQ = view.getUserResponse("How many questions do you want answer today: ");
 
@@ -56,7 +61,7 @@ public class StudyController {
     //update the file
     updateSrFile(studyTracker.allQuestions(), path);
     //print the end message
-    view.printEndMessage();
+    view.showElement("Congrats! You finished your study session!");
   }
 
   public void updateSrFile(String contents, String path) throws IOException {

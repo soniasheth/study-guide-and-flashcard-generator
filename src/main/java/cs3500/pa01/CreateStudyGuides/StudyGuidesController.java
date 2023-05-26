@@ -1,5 +1,6 @@
 package cs3500.pa01.CreateStudyGuides;
 
+import cs3500.pa01.Controller;
 import cs3500.pa01.MdFileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -8,7 +9,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class StudyGuidesController {
+public class StudyGuidesController implements Controller {
   private String path;
   private String flag;
   private String outputPath;

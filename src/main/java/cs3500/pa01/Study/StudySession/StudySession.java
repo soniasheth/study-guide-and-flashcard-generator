@@ -9,9 +9,11 @@ import java.util.Random;
 /**
  * Handles, tracks an individual study session + data
  * Holds everything needed for a Study Session
+ *
+ * MODEL
  */
 
-public class StudySession {
+public class StudySession implements Model{
   private int numQuestionsAnswered;
   private int easyToHard;
   private int hardToEasy;

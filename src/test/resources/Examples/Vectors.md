@@ -9,5 +9,6 @@
 
 ## Adding an element to a vector
 - [[v.add(object of type);]]
+- [[Do you like vectors? ::: Nope!]]
 
 - Reminder - go back and review clearing a vector!

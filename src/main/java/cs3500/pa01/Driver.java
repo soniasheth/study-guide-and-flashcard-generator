@@ -3,6 +3,8 @@ package cs3500.pa01;
 import cs3500.pa01.CreateStudyGuides.StudyGuidesController;
 import cs3500.pa01.Study.StudyController;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
 
 /**
  * This is the main driver of this project.
@@ -25,8 +27,8 @@ public class Driver {
     }
     //runs a Study Session
     else if(args.length == 0) {
-      StudyController controller = new StudyController();
-      controller.runSession();
+      StudyController controller = new StudyController(new InputStreamReader(System.in), new PrintStream(System.out));
+      controller.run();
     }
     else {
       throw new IllegalArgumentException("Too little or too many arguments");

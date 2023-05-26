@@ -33,7 +33,9 @@ class StudyGuidesControllerTest {
     FileSystemVisitor v1 = new FileSystemVisitor();
     Files.walkFileTree(Path.of(directory), v1);
     files = v1.getMarkdownFileList();
-    controller = new StudyGuidesController("", "filename", "3");
+    controller = new StudyGuidesController("./src/test/resources/Examples",
+        "filename", "./src/test/resources/Examples/Testing.md");
+
   }
 
 
@@ -166,19 +168,17 @@ class StudyGuidesControllerTest {
   }
 
   /**
-   * Tests main method in driver
+   * Tests the run method
    *
    * @throws IOException if there are incorrect amount of input args
    *
    */
   @Test
   public void testRun() throws IOException {
-    String[] args = new String[] {"./src/test/resources/Examples",
-        "filename", "./src/test/resources/Examples/Testing.md"};
     assertDoesNotThrow(() ->
         controller.run());
 
-    //check if file contents are the same
+    //check if file contents are the same in the .md file
     String contentActual = "";
     String contentExpect =
         """
@@ -214,18 +214,68 @@ class StudyGuidesControllerTest {
     assertEquals(contentExpect, contentActual);
 
     tempFile.delete();
+
+    // check the .sr file
+    String contentActual1 = "";
+    String contentExpect1 =
+            """
+            Are arrays different in C++?
+            Answer: A little bit
+            Difficulty: Hard
+                        
+            What is the capital of Canada?
+            Answer: The capital is Ottawa.
+            Difficulty: Hard
+                        
+            Which country is known as the Land of the Rising Sun?
+            Answer: Japan.
+            Difficulty: Hard
+                        
+            What is the largest river in Africa?
+            Answer: The largest river is the Nile River.
+            Difficulty: Hard
+                        
+            What is the tallest mountain in North America?
+            Answer: The tallest mountain is Denali (also known as Mount McKinley).
+            Difficulty: Hard
+                        
+            Which continent is the driest inhabited continent on Earth?
+            Answer: Australia.
+            Difficulty: Hard
+                        
+            What is the longest river in South America?
+            Answer: The longest river is the Amazon River.
+            Difficulty: Hard
+            
+            Do you like vectors?
+            Answer: Nope!
+            Difficulty: Hard
+            
+            """;
+
+    File tempFileSr = new File("./src/test/resources/Examples/Testing.sr");
+    Scanner fileScanSr = new Scanner(tempFileSr);
+    while (fileScanSr.hasNextLine()) {
+      contentActual1 = contentActual1 + fileScanSr.nextLine() + "\n";
+    }
+    assertEquals(contentExpect1, contentActual1);
+
+    tempFileSr.delete();
+
+
   }
 
   /**
-   * Tests main method in driver with an exception
+   * Tests run method  with an exception
    */
   @Test
   public void testMainFail() {
-    String[] args = new String[] {"./src/test/resources/Examples",
-        "./src/test/resources/Examples/Testing.md"};
+    StudyGuidesController invalidController =
+        new StudyGuidesController("./src/test/resoures/Examples", "filename",
+        "./src/test/resources/Examples/Testing.md");
     assertThrows(
         IllegalArgumentException.class,
-        () -> controller.run());
+        () -> invalidController.run());
   }
 
 

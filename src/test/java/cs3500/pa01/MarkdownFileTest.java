@@ -21,7 +21,6 @@ class MarkdownFileTest {
   MarkdownFile f1;
   MarkdownFile f2;
   MarkdownFile f3;
-  MarkdownFile f4;
   MarkdownFile f5;
   private final String directory = "./src/test/resources/Examples";
 
@@ -46,10 +45,6 @@ class MarkdownFileTest {
     f3 = new MarkdownFile(Path.of(directory + "/Empty.md"),
         "Empty.md", knownCreationTime3, knownLastModifedTime3);
 
-    //has an incorrect / non-existent path
-    f4 = new MarkdownFile(Path.of("nothing"),
-        "Empty.md", knownCreationTime3, knownLastModifedTime3);
-
 
     f5 = new MarkdownFile(Path.of(directory + "/Vectors.md"),
         "Vectors.md", knownCreationTime2, knownLastModifedTime2);
@@ -61,8 +56,8 @@ class MarkdownFileTest {
   @Test
   public void testGetName() {
     assertEquals("Arrays.md", f1.getName());
-    //assertEquals("Vectors.md", f2.getName());
-    //assertEquals("Empty.md", f3.getName());
+    assertEquals("Vectors.md", f2.getName());
+    assertEquals("Empty.md", f3.getName());
   }
 
   /**
@@ -138,13 +133,61 @@ class MarkdownFileTest {
    */
   @Test
   public void testExceptionCase() {
+    FileTime knownCreationTime3 = FileTime.from(Instant.parse("2023-05-16T00:45:45Z"));
+    FileTime knownLastModifedTime3 = FileTime.from(Instant.parse("2023-05-16T00:45:45.774276125Z"));
     // Checking an invalid score produces the correct exception
     assertThrows(
         // .class refers to the type, not an instance of the IllegalArgumentException class
         IllegalArgumentException.class,
-        () -> f4.getImportantFileContents());
+        () -> new MarkdownFile(Path.of("nothing"), "Empty.md", knownCreationTime3, knownLastModifedTime3));
   }
 
+  /**
+   * Tests getFileQuestions method (success)
+   */
+  @Test
+  public void testgetFileQuestions() {
+    String contentExpect =
+        """
+        Are arrays different in C++?
+        Answer: A little bit
+        Difficulty: Hard
+                    
+        What is the capital of Canada?
+        Answer: The capital is Ottawa.
+        Difficulty: Hard
+                    
+        Which country is known as the Land of the Rising Sun?
+        Answer: Japan.
+        Difficulty: Hard
+                    
+        What is the largest river in Africa?
+        Answer: The largest river is the Nile River.
+        Difficulty: Hard
+                    
+        What is the tallest mountain in North America?
+        Answer: The tallest mountain is Denali (also known as Mount McKinley).
+        Difficulty: Hard
+                    
+        Which continent is the driest inhabited continent on Earth?
+        Answer: Australia.
+        Difficulty: Hard
+                    
+        What is the longest river in South America?
+        Answer: The longest river is the Amazon River.
+        Difficulty: Hard
+        
+        """;
+    assertEquals(contentExpect,f1.getFileQuestions());
+  }
+
+  /**
+   * Tests Tests getFileQuestions method (empty)
+   */
+  @Test
+  public void testgetFileQuestionsEmpty() {
+    assertEquals("", f3.getFileQuestions());
+  }
   /**
    * Tests equals function with true returns
    */

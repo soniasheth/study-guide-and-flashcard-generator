@@ -3,6 +3,7 @@ package cs3500.pa01;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -78,6 +79,64 @@ class LineProcessorTest {
   @Test
   public void testNoBrackets() {
     assertEquals("", lp.processFileLine("this should be nothing"));
+  }
+
+  /**
+   * Tests removeWord function successfully working
+   */
+  @Test
+  public void testRemoveWordSucess() {
+    String test1 = "Hello my name is Sonia";
+    String test2 = "OOD is fun!";
+    String test3 = "Difficulty: Hard";
+    assertEquals("my name is Sonia", lp.removeWord(test1, "Hello"));
+    assertEquals("is fun!", lp.removeWord(test2, "OOD"));
+    assertEquals("Hard", lp.removeWord(test3, "Difficulty:"));
+  }
+
+  /**
+   * Tests removeWord function throwing an exception
+   */
+  @Test
+  public void testRemoveWordFail() {
+    String test1 = "Hello my name is Sonia";
+    assertThrows(
+        IllegalArgumentException.class,
+        () -> lp.removeWord(test1, "grass"));
+  }
+
+  /**
+   * Tests processQuestion function sucessfully working
+   */
+  @Test
+  public void testProcessQuestionSuccess() {
+    String question1 = "- Which continent is the driest inhabited continent on Earth?:::Australia.";
+    String question2 = "- What is the longest river in South America?::: The longest river is the Amazon River.";
+    String formatted1 =
+        """
+            Which continent is the driest inhabited continent on Earth?
+            Answer: Australia.
+            Difficulty: Hard
+            """;
+    String formatted2 =
+        """
+            What is the longest river in South America?
+            Answer: The longest river is the Amazon River.
+            Difficulty: Hard
+            """;
+    assertEquals(formatted1, lp.processQuestion(question1));
+    assertEquals(formatted2, lp.processQuestion(question2));
+  }
+
+  /**
+   * Tests processQuestion function throwing an exception
+   */
+  @Test
+  public void testProcessQuestionFail() {
+    String question1 = "- Which continent is the driest inhabited continent on Earth?";
+    assertThrows(
+        IllegalArgumentException.class,
+        () -> lp.processQuestion(question1));
   }
 
 

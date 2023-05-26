@@ -57,7 +57,7 @@ public class LineProcessor {
     int index = phrase.indexOf(remove);
     int length = remove.length();
     if(index != -1) {
-      return phrase.substring(index + length + 1);
+      return phrase.substring(index + length).trim();
     }
     else {
       throw new IllegalArgumentException("String to remove not present in the phrase");
@@ -75,18 +75,17 @@ public class LineProcessor {
   public String processQuestion(String questionLine) {
     StringBuilder formattedQuestion = new StringBuilder();
     int index = questionLine.indexOf(":::");
-    String question = questionLine.substring(2, index);
-    String answer = questionLine.substring(index + 3);
-    //get rid of the extra space at the end of the question
-    if(question.charAt(question.length() - 1) == ' ') {
-      question = question.substring(0,question.length() - 1);
+    if(index != -1) {
+      String question = questionLine.substring(2, index).trim();
+      String answer = questionLine.substring(index + 3).trim();
+      formattedQuestion.append(question + "\n");
+      formattedQuestion.append("Answer: " + answer + "\n");
+      formattedQuestion.append("Difficulty: Hard" + "\n");
+      return formattedQuestion.toString();
+    } else {
+      throw new IllegalArgumentException("This is not a question from the file");
     }
-    if(answer.charAt(0) == ' ') {
-      answer = answer.substring(1);
-    }
-    formattedQuestion.append(question + "\n");
-    formattedQuestion.append("Answer: " + answer + "\n");
-    formattedQuestion.append("Difficulty: Hard" + "\n");
-    return formattedQuestion.toString();
+
+
   }
 }
