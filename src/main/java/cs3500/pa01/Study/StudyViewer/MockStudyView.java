@@ -2,11 +2,11 @@ package cs3500.pa01.Study.StudyViewer;
 
 import java.io.IOException;
 
-public class MockStudyViewer implements View {
+public class MockStudyView implements View {
 
   Appendable ap; //give it a string builder
 
-  MockStudyViewer(Appendable ap){
+  public MockStudyView(Appendable ap){
     this.ap = ap;
   }
 

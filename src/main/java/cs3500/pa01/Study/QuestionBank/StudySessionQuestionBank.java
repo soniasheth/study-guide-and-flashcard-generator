@@ -76,6 +76,13 @@ public class StudySessionQuestionBank extends QuestionBank {
     }
   }
 
+  /**
+   * Generates an ArrayList of random questions for the study session
+   *
+   * @param questionNum the amount of questions wanted for the session
+   * @param seed for randomization
+   * @return arraylist of randomized questions for the session (hard questions come first)
+   */
   @Override
   public ArrayList<Question> generateSessionQuestions(int questionNum, int seed) {
     ArrayList<Question> sessionQuestions = new ArrayList<>();
@@ -108,28 +115,52 @@ public class StudySessionQuestionBank extends QuestionBank {
     return sessionQuestions;
   }
 
+  /**
+   * Gets the number of easy questions in the question bank
+   *
+   * @return number od easy questions
+   */
   public int getNumEasyQuestions() {
     return numEasyQuestions;
   }
 
+  /**
+   * Get the number of hard questions in the question bank
+   * @return
+   */
   public int getNumHardQuestions() {
     return numHardQuestions;
   }
 
+  /**
+   * Increases the number of easy questions, decreases the number of hard questions
+   */
   public void increaseNumEasyQue() {
     numEasyQuestions++;
     numHardQuestions--;
   }
 
+  /**
+   * Increases the number of hard questions, decreases the number of easy questions
+   */
   public void increaseNumHardQue() {
     numHardQuestions++;
     numEasyQuestions--;
   }
 
+  /**
+   * Gets the ArrayList of hard questions - needed for testing
+   *
+   * @return arraylist of hard questions
+   */
   public ArrayList<Question> getHardQuestions() {
     return hardQuestions;
   }
 
+  /**
+   * Gets the Arraylist of easy questions - needed for testing
+   * @return arraylist of easy questions
+   */
   public ArrayList<Question> getEasyQuestions() {
     return easyQuestions;
   }

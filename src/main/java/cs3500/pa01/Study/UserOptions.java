@@ -15,6 +15,12 @@ public enum UserOptions {
     this.val = val;
   }
 
+  /**
+   * Finds the correct UserOption that corresponds to the given String val
+   *
+   * @param val string number
+   * @return the UserOption associated with the val
+   */
   public static UserOptions fromVal(String val) {
     for (UserOptions option : UserOptions.values()) {
       if (option.val.equals(val)) {

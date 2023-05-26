@@ -48,10 +48,20 @@ public class ContentReader {
     contentScanner.close();
   }
 
+  /**
+   * Gets all the questions from the file
+   *
+   * @return all the questions found in the file + formatted
+   */
   public String getQuestionContent() {
     return this.questions.toString();
   }
 
+  /**
+   * Gets all the important content from the file
+   *
+   * @return all important content
+   */
   public String getStudyContent() {
     return this.content.toString();
   }

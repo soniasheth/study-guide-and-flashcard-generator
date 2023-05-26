@@ -13,13 +13,19 @@ import java.util.Random;
  * MODEL
  */
 
-public class StudySession implements Model{
+public class StudySession implements Model {
+  //fields
   private int numQuestionsAnswered;
   private int easyToHard;
   private int hardToEasy;
   private StudySessionQuestionBank questionBank;
   private ArrayList<Question> sessionQuestions;
 
+  /**
+   * Instantiates a Study Session object
+   * @param numQuestions
+   * @param link
+   */
   public StudySession(int numQuestions, String link) {
     questionBank = new StudySessionQuestionBank(link);
     this.sessionQuestions = questionBank.generateSessionQuestions(numQuestions, new Random().nextInt());
@@ -28,12 +34,20 @@ public class StudySession implements Model{
     this.hardToEasy = 0;
   }
 
+  /**
+   * Updates the bank + question field based on the user's answer to the question
+   *
+   * @param current the question being displayed
+   * @param userChoice the choice the user chose
+   */
   public void markedQuestion(Question current, String userChoice) {
+    //if user marks question as hard and it is currently easy
     if(current.getDifficulty().equals(Difficulty.HARD) && userChoice.equals("easy")) {
       hardToEasy++;
       current.setDifficulty(Difficulty.EASY);
       questionBank.increaseNumEasyQue();
     }
+    // if user marks question as easy and it is currently hard
     else if(current.getDifficulty().equals(Difficulty.EASY) && userChoice.equals("hard")) {
       easyToHard++;
       current.setDifficulty(Difficulty.HARD);
@@ -67,21 +81,45 @@ public class StudySession implements Model{
     return questionBank.toString();
   }
 
+  /**
+   * Increases the number of questions answered by 1
+   */
   public void increaseQuestionsAnswered() {
     numQuestionsAnswered++;
   }
 
+  /**
+   * Gets the session questions
+   *
+   * @return the session questions
+   */
   public ArrayList<Question> getSessionQuestions() {
     return sessionQuestions;
   }
 
 
+  /**
+   * Gets the number of questions switched from easy to hard - needed for testing
+   *
+   * @return number of questions switched from easy to hard
+   */
   public int getEasyToHard() {
     return easyToHard;
   }
+
+  /**
+   * Gets the number of questions switched from hard to easy - needed for testing
+   *
+   * @return number of questions switched from hard to easy
+   */
   public int getHardToEasy() {
     return hardToEasy;
   }
+
+  /**
+   * Gets the number of questions answered in the seesion
+   * @return the number of questions answered in the session
+   */
   public int getNumQuestionsAnswered() {
     return numQuestionsAnswered;
   }

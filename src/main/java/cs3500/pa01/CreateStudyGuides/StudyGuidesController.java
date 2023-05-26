@@ -9,17 +9,32 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * Controller for Creating the Study Guides
+ */
 public class StudyGuidesController implements Controller {
+  //fields
   private String path;
   private String flag;
   private String outputPath;
 
+  /**
+   * Instantiates a StudyGuide Controller Object
+   * @param path path to the file
+   * @param flag sorting order
+   * @param outputPath where to write the .md / .sr files to
+   */
   public StudyGuidesController(String path, String flag, String outputPath) {
     this.path = path;
     this.flag = flag;
     this.outputPath = outputPath;
   }
 
+  /**
+   * Runs the program
+   *
+   * @throws IOException if file is unable to opened
+   */
   public void run() throws IOException {
     //check if the arguments are valid
     checkInputArgs(path, flag);
