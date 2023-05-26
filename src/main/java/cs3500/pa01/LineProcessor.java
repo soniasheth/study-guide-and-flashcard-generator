@@ -52,7 +52,6 @@ public class LineProcessor {
    * @param phrase String phrase
    * @param remove String to remove
    * @return a string with the word removed
-   * @throws Exception if word to remove is not present in the phrase
    */
   public String removeWord(String phrase, String remove) {
     int index = phrase.indexOf(remove);
