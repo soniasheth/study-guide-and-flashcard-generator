@@ -49,7 +49,7 @@ public class StudySessionQuestionBank extends QuestionBank {
     } catch (IOException e) {
       throw new IllegalArgumentException("Path is invalid.");
     }
-    while(fileScan.hasNextLine()) {
+    while (fileScan.hasNextLine()) {
       //gets the question metadata according to the format of the Question .sr file
       LineProcessor lp = new LineProcessor();
       String question = fileScan.nextLine();
@@ -60,17 +60,16 @@ public class StudySessionQuestionBank extends QuestionBank {
       //create question
       Question q = new Question(question, answer, enumdifficulty);
       //add question to correct bank / arraylist
-      if(enumdifficulty.equals(Difficulty.HARD)) {
+      if (enumdifficulty.equals(Difficulty.HARD)) {
         hardQuestions.add(q);
         numHardQuestions++;
-      }
-      else if(enumdifficulty.equals(Difficulty.EASY)) {
+      } else if (enumdifficulty.equals(Difficulty.EASY)) {
         easyQuestions.add(q);
         numEasyQuestions++;
       }
       allQuestions.add(q);
       // move past the space between each question in the document (format of the document)
-      if(fileScan.hasNextLine()) {
+      if (fileScan.hasNextLine()) {
         fileScan.nextLine();
       }
     }
@@ -90,13 +89,13 @@ public class StudySessionQuestionBank extends QuestionBank {
     Collections.shuffle(easyQuestions, new Random(seed));
     Collections.shuffle(hardQuestions, new Random(seed));
 
-    if(questionNum <= easyQuestions.size() + hardQuestions.size()) {
+    if (questionNum <= easyQuestions.size() + hardQuestions.size()) {
       // questionNum is less than the total questions in the question bank
       // add all hard questions, add easy to fill in
       int easyCounter = 0;
-      for(int i = 0; i < questionNum; i++) {
+      for (int i = 0; i < questionNum; i++) {
         // if there are hard questions, add first
-        if(i < hardQuestions.size()) {
+        if (i < hardQuestions.size()) {
           sessionQuestions.add(hardQuestions.get(i));
         } else {
           sessionQuestions.add(easyQuestions.get(easyCounter));
@@ -105,10 +104,10 @@ public class StudySessionQuestionBank extends QuestionBank {
       }
     } else {
       //questionNum is more than total questions - add them all
-      for(Question x : hardQuestions) {
+      for (Question x : hardQuestions) {
         sessionQuestions.add(x);
       }
-      for(Question x : easyQuestions) {
+      for (Question x : easyQuestions) {
         sessionQuestions.add(x);
       }
     }
@@ -119,6 +118,7 @@ public class StudySessionQuestionBank extends QuestionBank {
    * Gets the number of easy questions in the question bank
    *
    * @return number od easy questions
+   *
    */
   public int getNumEasyQuestions() {
     return numEasyQuestions;
@@ -126,7 +126,9 @@ public class StudySessionQuestionBank extends QuestionBank {
 
   /**
    * Get the number of hard questions in the question bank
-   * @return
+   *
+   * @return the numer of hard questions
+   *
    */
   public int getNumHardQuestions() {
     return numHardQuestions;
@@ -159,7 +161,9 @@ public class StudySessionQuestionBank extends QuestionBank {
 
   /**
    * Gets the Arraylist of easy questions - needed for testing
+   *
    * @return arraylist of easy questions
+   *
    */
   public ArrayList<Question> getEasyQuestions() {
     return easyQuestions;

@@ -1,6 +1,8 @@
 package cs3500.pa01.Study.Question;
 
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import cs3500.pa01.LineProcessor;
 import cs3500.pa01.Study.Difficulty;
@@ -75,13 +77,13 @@ class QuestionTest {
       Where is Seattle located?
       Answer: Washington State
       Difficulty: Hard
-       """;
+        """;
     String output2 =
         """
       Where is Kirkland?
       Answer: Eastside of Seattle
       Difficulty: Easy
-       """;
+        """;
     assertEquals(output1, q1.toString());
     assertEquals(output2, q2.toString());
   }
@@ -108,10 +110,10 @@ class QuestionTest {
     Question q4 = new Question("Where is Kirkland?",
         "Answer: Eastside of Seattle", Difficulty.HARD);
 
+    assertEquals(false, q2.equals(q4));
     assertEquals(false, q1.equals(q2));
     assertEquals(false, q1.equals(q3));
     assertEquals(false, q2.equals(q1));
-    assertEquals(false, q2.equals(q4));
   }
 
   /**

@@ -20,6 +20,7 @@ public class StudyGuidesController implements Controller {
 
   /**
    * Instantiates a StudyGuide Controller Object
+   *
    * @param path path to the file
    * @param flag sorting order
    * @param outputPath where to write the .md / .sr files to

@@ -2,14 +2,10 @@ package cs3500.pa01.Study;
 
 import cs3500.pa01.Controller;
 import cs3500.pa01.MdFileWriter;
-
 import cs3500.pa01.Study.StudySession.Model;
-
 import cs3500.pa01.Study.Question.Question;
-
 import cs3500.pa01.Study.StudyViewer.View;
 import java.io.IOException;
-
 import java.util.ArrayList;
 
 
@@ -42,14 +38,15 @@ public class StudyController implements Controller {
     String numQ = view.getUserResponse("How many questions do you want answer today: ");
 
     //initalize the questions
-    ArrayList<Question> sessionQuestions = studyTracker.initializeSessionQuestions(Integer.parseInt(numQ), path);
+    ArrayList<Question> sessionQuestions =
+        studyTracker.initializeSessionQuestions(Integer.parseInt(numQ), path);
 
     //processes user input
     boolean exitFlag = false;
-    for(Question x : sessionQuestions) {
+    for (Question x : sessionQuestions) {
       view.showElement(x.getQuestion());
       UserOptions response = UserOptions.fromVal(view.showUserOptions());
-      switch(response) {
+      switch (response) {
         case EASY:
           studyTracker.markedQuestion(x, "easy");
           break;
@@ -66,7 +63,7 @@ public class StudyController implements Controller {
         default:
           throw new IllegalArgumentException("Invalid Answer.");
       }
-      if(exitFlag) {
+      if (exitFlag) {
         break;
       }
     }

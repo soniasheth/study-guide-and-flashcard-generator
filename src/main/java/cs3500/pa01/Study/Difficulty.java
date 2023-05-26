@@ -11,6 +11,7 @@ public enum Difficulty {
 
   /**
    * Instantiates enum
+   *
    * @param name the name of the enum
    */
   Difficulty(String name) {
@@ -19,6 +20,7 @@ public enum Difficulty {
 
   /**
    * Returns the name of the enum
+   *
    * @return name
    */
   public String toString() {
@@ -27,7 +29,8 @@ public enum Difficulty {
 
   /**
    * Takes in a string and converts it to the correct Difficulty (enum) type
-   * @param name
+   *
+   * @param name input string
    * @return Difficulty type of the string
    */
   public static Difficulty fromString(String name) {

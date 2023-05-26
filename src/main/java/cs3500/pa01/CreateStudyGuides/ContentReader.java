@@ -35,9 +35,9 @@ public class ContentReader {
     //gets all content read in from the file
     String contents = scanAllImportantContentFromFile();
     Scanner contentScanner = new Scanner(contents);
-    while(contentScanner.hasNextLine()) {
+    while (contentScanner.hasNextLine()) {
       String line = contentScanner.nextLine();
-      if(line.contains(":::")) {
+      if (line.contains(":::")) {
         //if a question
         questions.append(processor.processQuestion(line) + "\n");
       } else {

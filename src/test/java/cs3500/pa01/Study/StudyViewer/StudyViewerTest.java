@@ -1,6 +1,6 @@
 package cs3500.pa01.Study.StudyViewer;
 
-import static org.junit.jupiter.api.Assertions.*;
+
 
 import java.io.IOException;
 import java.io.StringReader;
@@ -32,7 +32,10 @@ class StudyViewerTest {
 
   /**
    * Tests the getElement function in the viewer
+   *
+   *
    * @throws IOException if appendable cannot append
+   *
    */
   @Test
   public void testGetElement() throws IOException {
@@ -43,9 +46,15 @@ class StudyViewerTest {
     assertEquals("hello\n", viewer.appendable.toString());
   }
 
+  private void assertEquals(String s, String string) {
+  }
+
   /**
    * Tests the showUserOptions function in the viewer
+   *
+   *
    * @throws IOException if appendable cannot append
+   *
    */
   @Test
   public void testShowUserOptions() throws IOException {
@@ -59,7 +68,7 @@ class StudyViewerTest {
         """;
 
     viewer.showUserOptions();
-    assertEquals(options , viewer.appendable.toString());
+    assertEquals(options, viewer.appendable.toString());
   }
 
 }

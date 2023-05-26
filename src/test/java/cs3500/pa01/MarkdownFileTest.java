@@ -139,7 +139,8 @@ class MarkdownFileTest {
     assertThrows(
         // .class refers to the type, not an instance of the IllegalArgumentException class
         IllegalArgumentException.class,
-        () -> new MarkdownFile(Path.of("nothing"), "Empty.md", knownCreationTime3, knownLastModifedTime3));
+        () -> new MarkdownFile(Path.of("nothing"),
+            "Empty.md", knownCreationTime3, knownLastModifedTime3));
   }
 
   /**
@@ -178,7 +179,7 @@ class MarkdownFileTest {
         Difficulty: Hard
         
         """;
-    assertEquals(contentExpect,f1.getFileQuestions());
+    assertEquals(contentExpect, f1.getFileQuestions());
   }
 
   /**
@@ -188,6 +189,7 @@ class MarkdownFileTest {
   public void testgetFileQuestionsEmpty() {
     assertEquals("", f3.getFileQuestions());
   }
+
   /**
    * Tests equals function with true returns
    */

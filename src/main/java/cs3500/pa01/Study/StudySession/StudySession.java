@@ -9,7 +9,6 @@ import java.util.Random;
 /**
  * Handles, tracks an individual study session + data
  * Holds everything needed for a Study Session
- *
  * MODEL
  */
 
@@ -37,7 +36,8 @@ public class StudySession implements Model {
    */
   public ArrayList<Question> initializeSessionQuestions(int numQuestions, String link) {
     questionBank = new StudySessionQuestionBank(link);
-    this.sessionQuestions = questionBank.generateSessionQuestions(numQuestions, new Random().nextInt());
+    this.sessionQuestions =
+        questionBank.generateSessionQuestions(numQuestions, new Random().nextInt());
     return sessionQuestions;
   }
 
@@ -49,13 +49,12 @@ public class StudySession implements Model {
    */
   public void markedQuestion(Question current, String userChoice) {
     //if user marks question as hard and it is currently easy
-    if(current.getDifficulty().equals(Difficulty.HARD) && userChoice.equals("easy")) {
+    if (current.getDifficulty().equals(Difficulty.HARD) && userChoice.equals("easy")) {
       hardToEasy++;
       current.setDifficulty(Difficulty.EASY);
       questionBank.increaseNumEasyQue();
-    }
-    // if user marks question as easy and it is currenly hard
-    else if(current.getDifficulty().equals(Difficulty.EASY) && userChoice.equals("hard")) {
+    } else if (current.getDifficulty().equals(Difficulty.EASY) && userChoice.equals("hard")) {
+      // if user marks question as easy and it is currenly hard
       easyToHard++;
       current.setDifficulty(Difficulty.HARD);
       questionBank.increaseNumHardQue();
@@ -70,9 +69,9 @@ public class StudySession implements Model {
    */
   public String toString() {
     StringBuilder builder = new StringBuilder();
-    builder.append("Total questions answered: " + numQuestionsAnswered + "\n" );
+    builder.append("Total questions answered: " + numQuestionsAnswered + "\n");
     builder.append("Questions from easy to hard: " + easyToHard + "\n");
-    builder.append("Questions from hard to easy: "+ hardToEasy + "\n");
+    builder.append("Questions from hard to easy: " + hardToEasy + "\n");
     builder.append("Current Counts in Question Bank:\n");
     builder.append(questionBank.getNumHardQuestions() + " hard questions\n");
     builder.append(questionBank.getNumEasyQuestions() + " easy questions");
@@ -115,6 +114,7 @@ public class StudySession implements Model {
 
   /**
    * Gets the number of questions answered in the seesion
+   *
    * @return the number of questions answered in the session
    */
   public int getNumQuestionsAnswered() {

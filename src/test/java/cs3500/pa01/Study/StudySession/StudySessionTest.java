@@ -1,6 +1,8 @@
 package cs3500.pa01.Study.StudySession;
 
-import static org.junit.jupiter.api.Assertions.*;
+
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import cs3500.pa01.Study.Difficulty;
 import cs3500.pa01.Study.Question.Question;
@@ -44,17 +46,17 @@ class StudySessionTest {
   public void testMarkedQuestionEasy() {
     //before
     assertEquals(Difficulty.EASY, q1.getDifficulty());
-    assertEquals(0,session.getEasyToHard());
-    assertEquals(0,session.getHardToEasy());
-    assertEquals(0,session.getNumQuestionsAnswered());
+    assertEquals(0, session.getEasyToHard());
+    assertEquals(0, session.getHardToEasy());
+    assertEquals(0, session.getNumQuestionsAnswered());
 
     session.markedQuestion(q1, "easy");
 
     //after
     assertEquals(Difficulty.EASY, q1.getDifficulty());
-    assertEquals(0,session.getEasyToHard());
-    assertEquals(0,session.getHardToEasy());
-    assertEquals(1,session.getNumQuestionsAnswered());
+    assertEquals(0, session.getEasyToHard());
+    assertEquals(0, session.getHardToEasy());
+    assertEquals(1, session.getNumQuestionsAnswered());
   }
 
   /**
@@ -64,17 +66,17 @@ class StudySessionTest {
   public void testMarkedQuestionHard() {
     //before
     assertEquals(Difficulty.HARD, q2.getDifficulty());
-    assertEquals(0,session.getEasyToHard());
-    assertEquals(0,session.getHardToEasy());
-    assertEquals(0,session.getNumQuestionsAnswered());
+    assertEquals(0, session.getEasyToHard());
+    assertEquals(0, session.getHardToEasy());
+    assertEquals(0, session.getNumQuestionsAnswered());
 
     session.markedQuestion(q2, "hard");
 
     //after
     assertEquals(Difficulty.HARD, q2.getDifficulty());
-    assertEquals(0,session.getEasyToHard());
-    assertEquals(0,session.getHardToEasy());
-    assertEquals(1,session.getNumQuestionsAnswered());
+    assertEquals(0, session.getEasyToHard());
+    assertEquals(0, session.getHardToEasy());
+    assertEquals(1, session.getNumQuestionsAnswered());
   }
 
   /**
@@ -84,17 +86,17 @@ class StudySessionTest {
   public void testMarkedQuestionHardToEasy() {
     //before
     assertEquals(Difficulty.HARD, q4.getDifficulty());
-    assertEquals(0,session.getEasyToHard());
-    assertEquals(0,session.getHardToEasy());
-    assertEquals(0,session.getNumQuestionsAnswered());
+    assertEquals(0, session.getEasyToHard());
+    assertEquals(0, session.getHardToEasy());
+    assertEquals(0, session.getNumQuestionsAnswered());
 
     session.markedQuestion(q4, "easy");
 
     //after
     assertEquals(Difficulty.EASY, q4.getDifficulty());
-    assertEquals(0,session.getEasyToHard());
-    assertEquals(1,session.getHardToEasy());
-    assertEquals(1,session.getNumQuestionsAnswered());
+    assertEquals(0, session.getEasyToHard());
+    assertEquals(1, session.getHardToEasy());
+    assertEquals(1, session.getNumQuestionsAnswered());
   }
 
   /**
@@ -104,17 +106,17 @@ class StudySessionTest {
   public void testMarkedQuestionEasyToHard() {
     //before
     assertEquals(Difficulty.EASY, q3.getDifficulty());
-    assertEquals(0,session.getEasyToHard());
-    assertEquals(0,session.getHardToEasy());
-    assertEquals(0,session.getNumQuestionsAnswered());
+    assertEquals(0, session.getEasyToHard());
+    assertEquals(0, session.getHardToEasy());
+    assertEquals(0, session.getNumQuestionsAnswered());
 
     session.markedQuestion(q3, "hard");
 
     //after
     assertEquals(Difficulty.HARD, q3.getDifficulty());
-    assertEquals(1,session.getEasyToHard());
-    assertEquals(0,session.getHardToEasy());
-    assertEquals(1,session.getNumQuestionsAnswered());
+    assertEquals(1, session.getEasyToHard());
+    assertEquals(0, session.getHardToEasy());
+    assertEquals(1, session.getNumQuestionsAnswered());
   }
 
   /**

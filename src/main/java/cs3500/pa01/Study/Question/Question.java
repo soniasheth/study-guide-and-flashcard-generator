@@ -73,7 +73,7 @@ public class Question {
     StringBuilder build = new StringBuilder();
     build.append(question + "\n");
     build.append(answer + "\n");
-    build.append("Difficulty: "+ difficulty.toString() + "\n");
+    build.append("Difficulty: " + difficulty.toString() + "\n");
     return build.toString();
   }
 

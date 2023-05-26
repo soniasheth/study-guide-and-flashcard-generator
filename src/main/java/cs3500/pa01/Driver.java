@@ -22,21 +22,19 @@ public class Driver {
    */
   public static void main(String[] args) throws IOException {
     //runs creating a Study guide + Question Bank
-    if(args.length == 3) {
+    if (args.length == 3) {
       String  path = args[0];
       String flag = args[1];
       String outputPath = args[2];
       StudyGuidesController controller = new StudyGuidesController(path, flag, outputPath);
       controller.run();
-    }
-    //runs a Study Session
-    else if(args.length == 0) {
-      View view = new StudyViewer(new PrintStream(System.out),new InputStreamReader(System.in));
+    } else if (args.length == 0) {
+      //runs a Study Session
+      View view = new StudyViewer(new PrintStream(System.out), new InputStreamReader(System.in));
       Model model = new StudySession();
       StudyController controller = new StudyController(view, model);
       controller.run();
-    }
-    else {
+    } else {
       throw new IllegalArgumentException("Too little or too many arguments");
     }
 

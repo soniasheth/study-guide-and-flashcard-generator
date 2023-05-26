@@ -111,7 +111,8 @@ class LineProcessorTest {
   @Test
   public void testProcessQuestionSuccess() {
     String question1 = "- Which continent is the driest inhabited continent on Earth?:::Australia.";
-    String question2 = "- What is the longest river in South America?::: The longest river is the Amazon River.";
+    String question2 =
+        "- What is the longest river in South America?::: The longest river is the Amazon River.";
     String formatted1 =
         """
             Which continent is the driest inhabited continent on Earth?

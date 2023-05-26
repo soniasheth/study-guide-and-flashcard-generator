@@ -50,7 +50,7 @@ public abstract class QuestionBank {
    */
   public String toString() {
     StringBuilder builder = new StringBuilder();
-    for(Question x : allQuestions) {
+    for (Question x : allQuestions) {
       builder.append(x.toString() + "\n");
     }
     return builder.toString();

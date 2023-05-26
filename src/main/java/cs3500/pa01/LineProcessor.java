@@ -48,6 +48,7 @@ public class LineProcessor {
   /**
    * Takes in a phrase and a word to remove from the phrase and removes the word
    *     from the phrase if at the beginning of the phrase
+   *
    * @param phrase String phrase
    * @param remove String to remove
    * @return a string with the word removed
@@ -56,10 +57,9 @@ public class LineProcessor {
   public String removeWord(String phrase, String remove) {
     int index = phrase.indexOf(remove);
     int length = remove.length();
-    if(index != -1) {
+    if (index != -1) {
       return phrase.substring(index + length).trim();
-    }
-    else {
+    } else {
       throw new IllegalArgumentException("String to remove not present in the phrase");
     }
   }
@@ -75,7 +75,7 @@ public class LineProcessor {
   public String processQuestion(String questionLine) {
     StringBuilder formattedQuestion = new StringBuilder();
     int index = questionLine.indexOf(":::");
-    if(index != -1) {
+    if (index != -1) {
       String question = questionLine.substring(2, index).trim();
       String answer = questionLine.substring(index + 3).trim();
       formattedQuestion.append(question + "\n");

@@ -1,13 +1,10 @@
 package cs3500.pa01.Study;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import cs3500.pa01.Study.StudySession.Model;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import cs3500.pa01.Study.StudySession.StudySessionMock;
 import cs3500.pa01.Study.StudyViewer.MockStudyView;
 import java.io.IOException;
-import cs3500.pa01.Study.StudyViewer.View;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**

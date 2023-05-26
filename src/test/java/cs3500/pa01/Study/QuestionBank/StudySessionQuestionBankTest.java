@@ -49,22 +49,22 @@ class StudySessionQuestionBankTest {
   @Test
   public void testIntializeQuestionsSuccess() {
     //initilize questions is called in the constructor and so the lists are never empty
-    ArrayList<Question> all = new ArrayList<> (Arrays.asList(q1,q2,q3,q4,q5));
-    ArrayList<Question> easy = new ArrayList<> (Arrays.asList(q1,q3,q5));
-    ArrayList<Question> hard = new ArrayList<> (Arrays.asList(q2,q4));
+    ArrayList<Question> all = new ArrayList<>(Arrays.asList(q1, q2, q3, q4, q5));
+    ArrayList<Question> easy = new ArrayList<>(Arrays.asList(q1, q3, q5));
+    ArrayList<Question> hard = new ArrayList<>(Arrays.asList(q2, q4));
 
     assertEquals(5, questionBank.getAllQuestions().size());
-    for(int i = 0; i < questionBank.getAllQuestions().size(); i++) {
+    for (int i = 0; i < questionBank.getAllQuestions().size(); i++) {
       assertEquals(all.get(i), questionBank.getAllQuestions().get(i));
     }
 
     assertEquals(2, questionBank.getHardQuestions().size());
-    for(int i = 0; i < questionBank.getHardQuestions().size(); i++) {
+    for (int i = 0; i < questionBank.getHardQuestions().size(); i++) {
       assertEquals(hard.get(i), questionBank.getHardQuestions().get(i));
     }
 
     assertEquals(3, questionBank.getEasyQuestions().size());
-    for(int i = 0; i < questionBank.getEasyQuestions().size(); i++) {
+    for (int i = 0; i < questionBank.getEasyQuestions().size(); i++) {
       assertEquals(easy.get(i), questionBank.getEasyQuestions().get(i));
     }
   }
@@ -88,10 +88,10 @@ class StudySessionQuestionBankTest {
   public void testGenerateSessionQuestionsAbove() {
     //requested question amount above amount in bank
     ArrayList<Question> bank1 = questionBank.generateSessionQuestions(10, 100);
-    ArrayList<Question> expectedBank1 = new ArrayList<> (Arrays.asList(q2,q4,q1,q5,q3));
+    ArrayList<Question> expectedBank1 = new ArrayList<>(Arrays.asList(q2, q4, q1, q5, q3));
     assertEquals(5, bank1.size());
-    for(int i = 0; i < bank1.size(); i++) {
-      assertEquals(expectedBank1.get(i),bank1.get(i));
+    for (int i = 0; i < bank1.size(); i++) {
+      assertEquals(expectedBank1.get(i), bank1.get(i));
     }
   }
 
@@ -103,10 +103,10 @@ class StudySessionQuestionBankTest {
   public void testGenerateSessionQuestionsEqual() {
     //requested question amount equal amount in bank
     ArrayList<Question> bank1 = questionBank.generateSessionQuestions(5, 100);
-    ArrayList<Question> expectedBank1 = new ArrayList<> (Arrays.asList(q2,q4,q1,q5,q3));
+    ArrayList<Question> expectedBank1 = new ArrayList<>(Arrays.asList(q2, q4, q1, q5, q3));
     assertEquals(5, bank1.size());
-    for(int i = 0; i < bank1.size(); i++) {
-      assertEquals(expectedBank1.get(i),bank1.get(i));
+    for (int i = 0; i < bank1.size(); i++) {
+      assertEquals(expectedBank1.get(i), bank1.get(i));
     }
   }
 
@@ -118,10 +118,10 @@ class StudySessionQuestionBankTest {
   public void testGenerateSessionQuestionsBelowOnlyHard() {
     //requested question amount below amount in bank , but equal to # of hard questions
     ArrayList<Question> bank1 = questionBank.generateSessionQuestions(2, 100);
-    ArrayList<Question> expectedBank1 = new ArrayList<> (Arrays.asList(q2,q4));
+    ArrayList<Question> expectedBank1 = new ArrayList<>(Arrays.asList(q2, q4));
     assertEquals(2, bank1.size());
-    for(int i = 0; i < bank1.size(); i++) {
-      assertEquals(expectedBank1.get(i),bank1.get(i));
+    for (int i = 0; i < bank1.size(); i++) {
+      assertEquals(expectedBank1.get(i), bank1.get(i));
     }
   }
 
@@ -133,10 +133,10 @@ class StudySessionQuestionBankTest {
   public void testGenerateSessionQuestionsBelowEasyAndHard() {
     //requested question amount below amount in bank, above # of hard questions
     ArrayList<Question> bank1 = questionBank.generateSessionQuestions(3, 100);
-    ArrayList<Question> expectedBank1 = new ArrayList<> (Arrays.asList(q2,q4,q1));
+    ArrayList<Question> expectedBank1 = new ArrayList<>(Arrays.asList(q2, q4, q1));
     assertEquals(3, bank1.size());
-    for(int i = 0; i < bank1.size(); i++) {
-      assertEquals(expectedBank1.get(i),bank1.get(i));
+    for (int i = 0; i < bank1.size(); i++) {
+      assertEquals(expectedBank1.get(i), bank1.get(i));
     }
   }
 
@@ -196,8 +196,8 @@ class StudySessionQuestionBankTest {
     assertEquals(3, questionBank.getNumEasyQuestions());
     assertEquals(2, questionBank.getNumHardQuestions());
     questionBank.increaseNumEasyQue();
-    assertEquals(4,questionBank.getNumEasyQuestions());
-    assertEquals(1,questionBank.getNumHardQuestions());
+    assertEquals(4, questionBank.getNumEasyQuestions());
+    assertEquals(1, questionBank.getNumHardQuestions());
   }
 
   /**
@@ -210,8 +210,8 @@ class StudySessionQuestionBankTest {
 
     questionBank.increaseNumHardQue();
 
-    assertEquals(2,questionBank.getNumEasyQuestions());
-    assertEquals(3,questionBank.getNumHardQuestions());
+    assertEquals(2, questionBank.getNumEasyQuestions());
+    assertEquals(3, questionBank.getNumHardQuestions());
   }
 
   /**
@@ -220,7 +220,7 @@ class StudySessionQuestionBankTest {
 
   @Test
   public void testGetHardQuestions() {
-    ArrayList<Question> hard = new ArrayList<> (Arrays.asList(q2,q4));
+    ArrayList<Question> hard = new ArrayList<>(Arrays.asList(q2, q4));
     assertEquals(hard, questionBank.getHardQuestions());
   }
 
@@ -229,7 +229,7 @@ class StudySessionQuestionBankTest {
    */
   @Test
   public void testGetEasyQuestions() {
-    ArrayList<Question> easy = new ArrayList<> (Arrays.asList(q1,q3,q5));
+    ArrayList<Question> easy = new ArrayList<>(Arrays.asList(q1, q3, q5));
     assertEquals(easy, questionBank.getEasyQuestions());
   }
 
@@ -238,7 +238,7 @@ class StudySessionQuestionBankTest {
    */
   @Test
   public void testGetAllQuestions() {
-    ArrayList<Question> all = new ArrayList<> (Arrays.asList(q1,q2,q3,q4,q5));
+    ArrayList<Question> all = new ArrayList<>(Arrays.asList(q1, q2, q3, q4, q5));
     assertEquals(all, questionBank.getAllQuestions());
   }
 

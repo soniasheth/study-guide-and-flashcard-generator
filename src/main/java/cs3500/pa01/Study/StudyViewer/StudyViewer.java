@@ -14,6 +14,7 @@ public class StudyViewer implements View {
 
   /**
    * Instantiates a StudyViewer object
+   *
    * @param appendable appendable
    * @param readable readable
    */
@@ -23,10 +24,6 @@ public class StudyViewer implements View {
     this.readable = readable;
   }
 
-//  public void showWelcome() throws IOException {
-//    appendable.append("Welcome to your Study Session! Let's get started!");
-//    appendable.append("\n");
-//  }
 
   /**
    * Displays a prompt to a user and gets their response
@@ -67,7 +64,5 @@ public class StudyViewer implements View {
     appendable.append("\n");
 
   }
-//  public void printEndMessage() throws IOException {
-//    appendable.append("Congrats! You finished your study session!");
-//  }
+
 }
