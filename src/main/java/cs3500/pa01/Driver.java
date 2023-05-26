@@ -19,6 +19,7 @@ public class Driver {
    * Project entry point: Serves as the 'home base' to instantiate objects
    *
    * @param args - no command line args required, however 3 needed: path, flag, and output path
+   * @throws IOException - when running the run method in controller
    */
   public static void main(String[] args) throws IOException {
     //runs creating a Study guide + Question Bank
