@@ -91,7 +91,10 @@ class QuestionTest {
    */
   @Test
   public void testEqualsTrue() {
+    Question q3 = new Question("Where is Seattle located?",
+        "Answer: Washington State", Difficulty.HARD);
     assertEquals(true, q1.equals(q1));
+    assertEquals(true, q1.equals(q3));
     assertEquals(true, q2.equals(q2));
   }
 
@@ -100,8 +103,15 @@ class QuestionTest {
    */
   @Test
   public void testEqualsFalse() {
+    Question q3 = new Question("Where is Seattle located?",
+        "Answer: Washington Stat", Difficulty.EASY);
+    Question q4 = new Question("Where is Kirkland?",
+        "Answer: Eastside of Seattle", Difficulty.HARD);
+
     assertEquals(false, q1.equals(q2));
+    assertEquals(false, q1.equals(q3));
     assertEquals(false, q2.equals(q1));
+    assertEquals(false, q2.equals(q4));
   }
 
   /**

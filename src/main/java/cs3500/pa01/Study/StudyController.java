@@ -2,39 +2,32 @@ package cs3500.pa01.Study;
 
 import cs3500.pa01.Controller;
 import cs3500.pa01.MdFileWriter;
-import cs3500.pa01.Study.StudySession.StudySessionMock;
-import cs3500.pa01.Study.StudyViewer.MockStudyView;
-import cs3500.pa01.Study.StudyViewer.StudyViewer;
+
+import cs3500.pa01.Study.StudySession.Model;
+
 import cs3500.pa01.Study.Question.Question;
-import cs3500.pa01.Study.StudySession.StudySession;
+
+import cs3500.pa01.Study.StudyViewer.View;
 import java.io.IOException;
-import java.io.Reader;
+
 import java.util.ArrayList;
+
 
 /**
  * Controller for running a Study Session
  */
 public class StudyController implements Controller {
   //fields
-  StudyViewer view;
-  Reader readable;
-  Appendable appendable;
+  View view;
+  Model studyTracker;
 
   /**
    * Instantiates a Study Controller object
-   * @param readable readable
-   * @param appendable appendable
    */
-  public StudyController(Reader readable, Appendable appendable) {
-    this.readable = readable;
-    this.appendable = appendable;
-    view = new StudyViewer(appendable, readable);
+  public StudyController(View view, Model model) {
+    this.view = view;
+    this.studyTracker = model;
   }
-
-//  public StudyController(MockStudyView view, StudySessionMock model) {
-//    this.view = new MockStudyView(new StringBuilder());
-//
-//  }
 
   /**
    * Runs the program
@@ -43,13 +36,15 @@ public class StudyController implements Controller {
    */
 
   public void run() throws IOException {
+    //introduction
     view.showElement("Welcome to your Study Session! Let's get started!");
     String path = view.getUserResponse("Enter the .sr file link: ");
     String numQ = view.getUserResponse("How many questions do you want answer today: ");
 
-    StudySession studyTracker = new StudySession(Integer.parseInt(numQ), path);
-    ArrayList<Question> sessionQuestions = studyTracker.getSessionQuestions();
+    //initalize the questions
+    ArrayList<Question> sessionQuestions = studyTracker.initializeSessionQuestions(Integer.parseInt(numQ), path);
 
+    //processes user input
     boolean exitFlag = false;
     for(Question x : sessionQuestions) {
       view.showElement(x.getQuestion());

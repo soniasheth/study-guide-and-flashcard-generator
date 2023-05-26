@@ -87,6 +87,17 @@ class FileSystemVisitorTest {
   }
 
   /**
+   * Test getMarkdownFile exception
+   */
+  @Test
+  public void testgetMarkdownFileException() {
+    FileSystemVisitor fileVisitor = new FileSystemVisitor();
+    assertThrows(
+        IllegalStateException.class,
+        () -> fileVisitor.getMarkdownFileList());
+  }
+
+  /**
    * Makes a MarkdownFile for testing purposes
    *
    * @param p path

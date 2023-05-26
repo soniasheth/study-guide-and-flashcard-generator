@@ -23,15 +23,22 @@ public class StudySession implements Model {
 
   /**
    * Instantiates a Study Session object
-   * @param numQuestions
-   * @param link
    */
-  public StudySession(int numQuestions, String link) {
-    questionBank = new StudySessionQuestionBank(link);
-    this.sessionQuestions = questionBank.generateSessionQuestions(numQuestions, new Random().nextInt());
+  public StudySession() {
     this.numQuestionsAnswered = 0;
     this.easyToHard = 0;
     this.hardToEasy = 0;
+  }
+
+  /**
+   * Initializes and returns the session questions
+   *
+   * @return the session questions
+   */
+  public ArrayList<Question> initializeSessionQuestions(int numQuestions, String link) {
+    questionBank = new StudySessionQuestionBank(link);
+    this.sessionQuestions = questionBank.generateSessionQuestions(numQuestions, new Random().nextInt());
+    return sessionQuestions;
   }
 
   /**
@@ -47,7 +54,7 @@ public class StudySession implements Model {
       current.setDifficulty(Difficulty.EASY);
       questionBank.increaseNumEasyQue();
     }
-    // if user marks question as easy and it is currently hard
+    // if user marks question as easy and it is currenly hard
     else if(current.getDifficulty().equals(Difficulty.EASY) && userChoice.equals("hard")) {
       easyToHard++;
       current.setDifficulty(Difficulty.HARD);
@@ -87,16 +94,6 @@ public class StudySession implements Model {
   public void increaseQuestionsAnswered() {
     numQuestionsAnswered++;
   }
-
-  /**
-   * Gets the session questions
-   *
-   * @return the session questions
-   */
-  public ArrayList<Question> getSessionQuestions() {
-    return sessionQuestions;
-  }
-
 
   /**
    * Gets the number of questions switched from easy to hard - needed for testing

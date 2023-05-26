@@ -204,6 +204,10 @@ class MarkdownFileTest {
    */
   @Test
   public void testEqualsFalse() {
+    FileTime knownCreationTime2 = FileTime.from(Instant.parse("2023-04-15T00:36:36Z"));
+    FileTime knownLastModifedTime2 = FileTime.from(Instant.parse("2023-04-15T00:37:53.045412811Z"));
+    MarkdownFile f6 = new MarkdownFile(Path.of(directory + "/Vectors.md"),
+        "Vectos.md", knownCreationTime2, knownLastModifedTime2);
     assertEquals(false, f2.equals(f1));
     assertEquals(false, f2.equals(f3));
   }

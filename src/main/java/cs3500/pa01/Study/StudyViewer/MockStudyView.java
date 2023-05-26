@@ -4,27 +4,37 @@ import java.io.IOException;
 
 public class MockStudyView implements View {
 
-  Appendable ap; //give it a string builder
+  Appendable ap;
+  private String choice;
 
-  public MockStudyView(Appendable ap){
-    this.ap = ap;
+  public MockStudyView(){
+    this.ap = new StringBuilder();
+  }
+
+  public MockStudyView(String choice){
+    this.ap = new StringBuilder();
+    this.choice = choice;
   }
 
   @Override
   public String getUserResponse(String prompt) throws IOException {
-    ap.append("user response");
-    return "";
+    ap.append("userresponse ");
+    return "1";
   }
 
   @Override
   public String showUserOptions() throws IOException {
-    ap.append("showUserOptions");
-    return "";
+    ap.append("showUserOptions ");
+    return choice;
   }
 
   @Override
   public void showElement(String element) throws IOException {
-    ap.append("show element");
+    ap.append("showelement ");
+  }
+
+  public String getAppendable() {
+    return ap.toString();
   }
 
 

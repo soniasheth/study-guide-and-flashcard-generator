@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Tests the StudySession (MODEL) Class
+ */
 class StudySessionTest {
   private final String directory = "./src/test/resources/PA02 Examples/TestQuestions.sr";
   StudySession session;
@@ -20,7 +23,8 @@ class StudySessionTest {
 
   @BeforeEach
   public void setUp() {
-    session = new StudySession(10, directory);
+    session = new StudySession();
+    session.initializeSessionQuestions(10, directory);
     q1 = new Question("What is the capital of Canada?",
         "Answer: The capital is Ottawa.", Difficulty.EASY);
     q2 = new Question("Which country is known as the Land of the Rising Sun?",

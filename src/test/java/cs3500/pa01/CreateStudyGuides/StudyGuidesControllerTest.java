@@ -15,6 +15,9 @@ import java.util.Scanner;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Tests the StudyGuideController
+ */
 class StudyGuidesControllerTest {
   //fields needed
   private final String directory = "./src/test/resources/Examples";

@@ -11,8 +11,12 @@ import org.junit.jupiter.api.Test;
  * Tests the StudyViewer Class
  */
 class StudyViewerTest {
+  //fields
   StudyViewer viewer;
 
+  /**
+   * Set up
+   */
   @BeforeEach
   public void setUp() {
     String test =

@@ -2,6 +2,10 @@ package cs3500.pa01;
 
 import cs3500.pa01.CreateStudyGuides.StudyGuidesController;
 import cs3500.pa01.Study.StudyController;
+import cs3500.pa01.Study.StudySession.Model;
+import cs3500.pa01.Study.StudySession.StudySession;
+import cs3500.pa01.Study.StudyViewer.StudyViewer;
+import cs3500.pa01.Study.StudyViewer.View;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
@@ -27,7 +31,9 @@ public class Driver {
     }
     //runs a Study Session
     else if(args.length == 0) {
-      StudyController controller = new StudyController(new InputStreamReader(System.in), new PrintStream(System.out));
+      View view = new StudyViewer(new PrintStream(System.out),new InputStreamReader(System.in));
+      Model model = new StudySession();
+      StudyController controller = new StudyController(view, model);
       controller.run();
     }
     else {

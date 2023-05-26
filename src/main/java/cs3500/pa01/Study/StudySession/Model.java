@@ -12,7 +12,7 @@ public interface Model {
   String toString();
   String allQuestions();
   void increaseQuestionsAnswered();
-  ArrayList<Question> getSessionQuestions();
+  ArrayList<Question> initializeSessionQuestions(int numQuestions, String link);
   int getEasyToHard();
   int getHardToEasy();
   int getNumQuestionsAnswered();

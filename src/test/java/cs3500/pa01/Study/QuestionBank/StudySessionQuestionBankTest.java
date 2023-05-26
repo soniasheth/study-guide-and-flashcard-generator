@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
  */
 class StudySessionQuestionBankTest {
 
+  //fields
   private final String directory = "./src/test/resources/PA02 Examples/TestQuestions.sr";
   StudySessionQuestionBank questionBank;
   Question q1;
@@ -24,6 +25,9 @@ class StudySessionQuestionBankTest {
   Question q5;
 
 
+  /**
+   * Before each test - set up
+   */
   @BeforeEach
   public void setUp() {
     questionBank = new StudySessionQuestionBank(directory);
@@ -136,6 +140,10 @@ class StudySessionQuestionBankTest {
     }
   }
 
+  /**
+   * Tests the toString method
+   */
+
   @Test
   public void testToString() {
     String output =
@@ -164,16 +172,25 @@ class StudySessionQuestionBankTest {
     assertEquals(output, questionBank.toString());
   }
 
+  /**
+   * Tests the getNumEasyQuestions method
+   */
   @Test
   public void testGetNumEasyQuestions() {
     assertEquals(3, questionBank.getNumEasyQuestions());
   }
 
+  /**
+   * Tests the getNumHardQuestions function
+   */
   @Test
   public void testGetNumHardQuestions() {
     assertEquals(2, questionBank.getNumHardQuestions());
   }
 
+  /**
+   * Tests the increaseNumEasyQue method
+   */
   @Test
   public void testIncreaseNumEasyQue() {
     assertEquals(3, questionBank.getNumEasyQuestions());
@@ -183,6 +200,9 @@ class StudySessionQuestionBankTest {
     assertEquals(1,questionBank.getNumHardQuestions());
   }
 
+  /**
+   * Tests the increaseNumHardQue method
+   */
   @Test
   public void testIncreaseNumHardQue() {
     assertEquals(3, questionBank.getNumEasyQuestions());
@@ -194,18 +214,28 @@ class StudySessionQuestionBankTest {
     assertEquals(3,questionBank.getNumHardQuestions());
   }
 
+  /**
+   * Tests the getHardQuestions method
+   */
+
   @Test
   public void testGetHardQuestions() {
     ArrayList<Question> hard = new ArrayList<> (Arrays.asList(q2,q4));
     assertEquals(hard, questionBank.getHardQuestions());
   }
 
+  /**
+   * Tests the getEasyQuestions method
+   */
   @Test
   public void testGetEasyQuestions() {
     ArrayList<Question> easy = new ArrayList<> (Arrays.asList(q1,q3,q5));
     assertEquals(easy, questionBank.getEasyQuestions());
   }
 
+  /**
+   * Tests getAllQuestions method
+   */
   @Test
   public void testGetAllQuestions() {
     ArrayList<Question> all = new ArrayList<> (Arrays.asList(q1,q2,q3,q4,q5));
