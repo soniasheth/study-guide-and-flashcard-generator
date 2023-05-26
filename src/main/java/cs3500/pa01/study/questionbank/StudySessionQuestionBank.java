@@ -50,6 +50,7 @@ public class StudySessionQuestionBank extends QuestionBank {
     }
     while (fileScan.hasNextLine()) {
       //gets the question metadata according to the format of the Question .sr file
+      // assume that the .sr is properly formatted according to my specifications
       LineProcessor lp = new LineProcessor();
       String question = fileScan.nextLine();
       String answer = fileScan.nextLine();
