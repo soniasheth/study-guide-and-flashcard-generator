@@ -1,11 +1,11 @@
 package cs3500.pa01;
 
-import cs3500.pa01.CreateStudyGuides.StudyGuidesController;
-import cs3500.pa01.Study.StudyController;
-import cs3500.pa01.Study.StudySession.Model;
-import cs3500.pa01.Study.StudySession.StudySession;
-import cs3500.pa01.Study.StudyViewer.StudyViewer;
-import cs3500.pa01.Study.StudyViewer.View;
+import cs3500.pa01.createstudyguides.StudyGuidesController;
+import cs3500.pa01.study.StudyController;
+import cs3500.pa01.study.studysession.Model;
+import cs3500.pa01.study.studysession.StudySession;
+import cs3500.pa01.study.studyviewer.StudyViewer;
+import cs3500.pa01.study.studyviewer.View;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
